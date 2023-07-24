@@ -25,6 +25,11 @@ namespace CreativeCollab.Models
         {
         }
 
+        //Add neighbourhood entity to system
+        public DbSet<Neighbourhood> Neighbourhoods { get; set; }
+
+        public DbSet<Restaurant> Restaurants { get; set; }
+
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();

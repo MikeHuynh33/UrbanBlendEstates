@@ -10,7 +10,6 @@
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
-            ContextKey = "CreativeCollab.Models.ApplicationDbContext";
         }
 
         protected override void Seed(CreativeCollab.Models.ApplicationDbContext context)

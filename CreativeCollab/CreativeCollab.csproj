@@ -249,6 +249,11 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\photos\apartment.png" />
+    <Content Include="Content\photos\background.png" />
+    <Content Include="Content\photos\platter.png" />
+    <Content Include="Content\photos\residential.png" />
+    <Content Include="Content\photos\restaurant.png" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />

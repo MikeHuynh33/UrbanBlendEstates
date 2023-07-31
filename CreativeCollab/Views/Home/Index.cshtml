@@ -3,31 +3,172 @@
 }
 
 <main>
-    <section class="row" aria-labelledby="aspnetTitle">
-        <h1 id="title">ASP.NET</h1>
-        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-        <p><a href="https://asp.net" class="btn btn-primary btn-md">Learn more &raquo;</a></p>
-    </section>
+    <style>
+        .content-bar {
+            background: rgba(100, 79, 79, 0.3);
+            border-radius: 16px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(5.3px);
+            -webkit-backdrop-filter: blur(5.3px);
+            border: 1px solid rgba(100, 79, 79, 0.3);
+            z-index: 0;
+            transform: translateY(-50%);
+            border: 1px solid black;
+            display: flex;
+            flex-direction: column;
+            gap: 0.4em;
+            flex: 1 1 0px;
+            
+            margin:0 2em;
+        }
+        .content-bar__text{
+            text-align:center;
+            color:aliceblue;
+            font-size:1.5em;
+        }
+        .content-bar__image {
+            display: block;
+            margin: 0 auto;
+        }
+        .bg-glass {
+            background: rgba(20, 19, 19, 0.76);
+            border-radius: 16px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border: 1px solid rgba(20, 19, 19, 0.3);
+        }
+        .searchbar {
+            margin-bottom: auto;
+            margin-top: auto;
+            height: 60px;
+            background-color: #353b48;
+            border-radius: 30px;
+            padding: 10px;
+        }
 
-    <div class="row">
-        <section class="col-md-4" aria-labelledby="gettingStartedTitle">
-            <h2 id="gettingStartedTitle">Getting started</h2>
-            <p>
-                ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-                enables a clean separation of concerns and gives you full control over markup
-                for enjoyable, agile development.
-            </p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-        </section>
-        <section class="col-md-4" aria-labelledby="librariesTitle">
-            <h2 id="librariesTitle">Get more libraries</h2>
-            <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-        </section>
-        <section class="col-md-4" aria-labelledby="hostingTitle">
-            <h2 id="hostingTitle">Web Hosting</h2>
-            <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-        </section>
-    </div>
+        .search_input {
+            color: white;
+            border: 0;
+            outline: 0;
+            background: none;
+            width: 0;
+            caret-color: transparent;
+            line-height: 40px;
+            transition: width 0.4s linear;
+        }
+
+        .searchbar:hover > .search_input {
+            padding: 0 10px;
+            width: 450px;
+            caret-color: red;
+            transition: width 0.4s linear;
+        }
+
+        .searchbar:hover > .search_icon {
+            background: white;
+            color: #e74c3c;
+        }
+
+        .search_icon {
+            height: 40px;
+            width: 40px;
+            float: right;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            color: white;
+            background-color:transparent;
+            border:none;
+        }
+    </style>
+    <section class="row position-relative" aria-labelledby="aspnetTitle">
+        <img src="~/Content/photos/background.png" class="img-fluid" alt="...">
+        <div class="d-flex justify-content-sm-around ">
+            <div class="content-bar">
+                <div class="content-bar__image"><img src="~/Content/photos/platter.png" /></div>
+                <div class="content-bar__text">Coffee</div>
+            </div>
+            <div class="content-bar">
+                <div class="content-bar__image"><img src="~/Content/photos/restaurant.png" /></div>
+                <div class="content-bar__text">Food</div>
+            </div>
+            <div class="content-bar">
+                <div class="content-bar__image"><img src="~/Content/photos/residential.png" /></div>
+                <div class="content-bar__text">Residential</div>
+            </div>
+            <div class="content-bar">
+                <div class="content-bar__image"><img src="~/Content/photos/apartment.png" /></div>
+                <div class="content-bar__text">Commercial</div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="row gx-4 p-4 bg-glass">
+            <div class="col d-flex justify-content-t align-items-center flex-column ">
+                <div class="fs-3 text-white">Our Mission</div>
+                <p class="fs-6 text-white mt-2">At Food.ca, our mission is simple yet profound: to turn your real estate dreams into reality. With a focus on trust, transparency, and customer satisfaction, we are committed to providing exceptional experiences and personalized solutions for all your property needs. Let us be your guiding partner in the exciting world of real estate, where your goals become our mission.</p>
+            </div>
+            <div class="col d-flex justify-content-t align-items-center flex-column ">
+                <div class="fs-3 text-white">Our Achievement </div>
+                <p class="fs-6 text-white mt-2">Food.ca is thrilled to receive the coveted Customer Choice Award, a true testament to our dedication in providing unparalleled service and exceeding our clients' expectations. This achievement inspires us to continue delivering top-notch real estate experiences for every individual we have the privilege to serve. </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="container mt-4">
+                <div class="d-flex justify-content-center h-100">
+                    <form class="searchbar">
+                        <input class="search_input" type="text" name="" placeholder="Search...">
+                        <button type="submit" class="search_icon"><i class="fas fa-search"></i></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row mt-4">
+            <div class="col-md-3">
+                <div class="card" style="width: 18rem;">
+                    <img src="..." class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title 1</h5>
+                        <p class="card-text">Some quick example text for card 1.</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card" style="width: 18rem;">
+                    <img src="..." class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title 2</h5>
+                        <p class="card-text">Some quick example text for card 2.</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card" style="width: 18rem;">
+                    <img src="..." class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title 3</h5>
+                        <p class="card-text">Some quick example text for card 3.</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card" style="width: 18rem;">
+                    <img src="..." class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title 4</h5>
+                        <p class="card-text">Some quick example text for card 4.</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+    
 </main>

@@ -1,0 +1,19 @@
+﻿@model CreativeCollab.Models.RestaurantDto
+
+@{
+    ViewBag.Title = "DeleteConfirm";
+}
+
+<h2>Are you sure you want to delete this Restaurant?</h2>
+
+<a href="/Review/List">Cancel</a>
+
+<h3>@Model.RestaurantName</h3>
+<div> Neighbourhood: @Model.NeighbourhoodName </div>
+<div>Address: @Model.Address</div>
+<div>Website: @Model.RestaurantLink</div>
+<div>Description: @Model.Description</div>
+
+<form action="/Restaurant/Delete/@Model.RestaurantId" method="POST">
+    <input type="submit" value="Confirm Delete" />
+</form>

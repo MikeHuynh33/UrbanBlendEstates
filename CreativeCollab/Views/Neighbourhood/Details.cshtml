@@ -1,0 +1,24 @@
+﻿@model CreativeCollab.Models.ViewModels.DetailsNeighbourhood
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<a href="/Neighbourhood/List">Go back to Neighbourhood list</a>
+<br />
+<a href="/Neighbourhood/Edit/@Model.SelectedNeighbourhood.NeighbourhoodId">Update</a>
+<br />
+<a style="color:#ab2020;" href="/Neighbourhood/DeleteConfirm/@Model.SelectedNeighbourhood.NeighbourhoodId">Delete</a>
+<br />
+<h2> @Model.SelectedNeighbourhood.NeighbourhoodName</h2>
+
+<div>
+
+    @foreach (var restaurant in Model.RelatedRestaurants)
+    {
+        <h3><a href="/Restaurant/Details/@restaurant.RestaurantId">@restaurant.RestaurantName</a></h3>
+    }
+
+</div>
+
+<a href="/Restaurant/New"> Add Restaurant </a>

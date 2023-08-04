@@ -1,0 +1,13 @@
+﻿@model IEnumerable<CreativeCollab.Models.NeighbourhoodDto>
+@{
+    ViewBag.Title = "List";
+}
+
+<h2> Neighbourhood List</h2>
+
+@foreach (var neighbourhood in Model)
+{
+    <h3><a href="/Neighbourhood/Details/@neighbourhood.NeighbourhoodId"> @neighbourhood.NeighbourhoodName</a></h3>
+}
+
+<a href="/Neighbourhood/New"> Add New Neighbourhood </a>

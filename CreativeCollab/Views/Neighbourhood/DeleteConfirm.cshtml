@@ -1,0 +1,12 @@
+﻿@model CreativeCollab.Models.NeighbourhoodDto
+
+@{
+    ViewBag.Title = "DeleteConfirm";
+}
+
+<h2>Are you sure you want to delete this neighbourhood?</h2>
+<a href="/Neighbourhood/List">Cancel</a>
+<h2> @Model.NeighbourhoodName</h2>
+<form action="/Neighbourhood/Delete/@Model.NeighbourhoodId" method="POST">
+    <input type="submit" value="Confirm Delete" />
+</form>

@@ -12,4 +12,10 @@ namespace CreativeCollab.Models
         public int NeighbourhoodId { get; set; }
         public string NeighbourhoodName { get; set; }
     }
+
+    public class NeighbourhoodDto
+    {
+        public int NeighbourhoodId { get; set; }
+        public string NeighbourhoodName { get; set; }
+    }
 }

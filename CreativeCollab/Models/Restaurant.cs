@@ -22,4 +22,16 @@ namespace CreativeCollab.Models
         
         public string RestaurantLink { get; set; }
     }
+
+    public class RestaurantDto
+    {
+        public int RestaurantId { get; set; }
+        public string RestaurantName { get; set; }
+        public string Description { get; set; }
+        public string Address { get; set; }
+        public string RestaurantLink { get; set; }
+
+        public int NeighbourhoodId { get; set; }
+        public string NeighbourhoodName { get; set; }
+    }
 }

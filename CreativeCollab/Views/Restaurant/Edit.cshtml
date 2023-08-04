@@ -1,0 +1,31 @@
+﻿@model CreativeCollab.Models.RestaurantDto
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Update Restaurant</h2>
+
+<form action="/Restaurant/Update/@Model.RestaurantId" method="POST">
+    <div style="display:none;">
+        <input type="text" name="RestaurantId" value="@Model.RestaurantId" />
+    </div>
+    <div>
+        <label>Restaurant:</label> <input type="text" name="RestaurantName" value="@Model.RestaurantName" />
+    </div>
+    <div>
+        <label>NeighbourhoodId:</label> <input type="text" name="NeighbourhoodId" value="@Model.NeighbourhoodId" />
+    </div>
+    <div>
+        <label>Address:</label> <input type="text" name="Address" value="@Model.Address" />
+    </div>
+    <div>
+        <label>Website:</label> <input type="text" name="RestaurantLink" value="@Model.RestaurantLink" />
+    </div>
+    <div>
+        <label>Description:</label> <textarea name="Description" value="@Model.Description"></textarea>
+    </div>
+    <div>
+        <input type="submit" value="Update Restaurant" />
+    </div>
+</form>

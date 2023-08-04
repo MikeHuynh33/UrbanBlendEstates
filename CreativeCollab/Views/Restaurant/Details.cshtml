@@ -1,0 +1,18 @@
+﻿@model CreativeCollab.Models.ViewModels.DetailsRestaurant
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<a href="/Restaurant/List">Go back to Restaurant List</a>
+<br />
+<a href="/Restaurant/Edit/@Model.SelectedRestaurant.RestaurantId">Update</a>
+<br />
+<a style="color:#ab2020;" href="/Restaurant/DeleteConfirm/@Model.SelectedRestaurant.RestaurantId">Delete</a>
+
+<h2>@Model.SelectedRestaurant.RestaurantName</h2>
+
+<div> Neighbourhood: @Model.SelectedRestaurant.NeighbourhoodName</div>
+<div> Address: @Model.SelectedRestaurant.Address</div>
+<div> Link: @Model.SelectedRestaurant.RestaurantLink</div>
+<div> Description: @Model.SelectedRestaurant.Description</div>

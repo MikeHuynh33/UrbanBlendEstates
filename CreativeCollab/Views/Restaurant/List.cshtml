@@ -1,0 +1,15 @@
+﻿@model IEnumerable<CreativeCollab.Models.RestaurantDto>
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>List of Restaurants</h2>
+<a href="/Restaurant/New"> Add New Restaurant </a>
+@foreach (var restaurant in Model)
+{
+    <h2><a href="/Restaurant/Details/@restaurant.RestaurantId"> @restaurant.RestaurantName </a></h2>
+    <div> Link: @restaurant.RestaurantLink </div>
+    <div> Address: @restaurant.Address </div>
+    <div> Neighbourhood: @restaurant.NeighbourhoodName </div>
+    <div> Description: @restaurant.Description </div>
+}

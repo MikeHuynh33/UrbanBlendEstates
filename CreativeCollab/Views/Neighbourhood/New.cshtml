@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewBag.Title = "New";
+}
+
+<h2>Create Neighbourhood</h2>
+<form action="/Neighbourhood/Create" method="POST">
+    <div>
+        <label>Neighbourhood Name:</label> <br />
+        <input name="NeighbourhoodName" type="text" />
+    </div>
+    <br />
+    <div>
+        <input type="submit" value="Create Neighbourhood" />
+    </div>
+</form>

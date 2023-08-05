@@ -1,0 +1,21 @@
+﻿@model CreativeCollab.Models.NeighbourhoodDto
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit Neighbourhood</h2>
+
+<form action="/Neighbourhood/Update/@Model.NeighbourhoodId" method="POST">
+    <div style="display:none;">
+        <input name="NeighbourhoodId" type="text" value="@Model.NeighbourhoodId" />
+    </div>
+    <div>
+        <label>Neighbourhood Name:</label> <br />
+        <input name="NeighbourhoodName" type="text" value="@Model.NeighbourhoodName" />
+    </div>
+    <br />
+    <div>
+        <input type="submit" value="Update Neighbourhood" />
+    </div>
+</form>

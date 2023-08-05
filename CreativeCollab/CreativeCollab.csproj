@@ -199,10 +199,31 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\NeighbourhoodController.cs" />
     <Compile Include="Controllers\NeighbourhoodDataController.cs" />
+    <Compile Include="Controllers\PropertyDataController.cs" />
     <Compile Include="Controllers\RestaurantController.cs" />
     <Compile Include="Controllers\RestaurantDataController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202307240404347_InitialCreate.cs" />
+    <Compile Include="Migrations\202307240404347_InitialCreate.Designer.cs">
+      <DependentUpon>202307240404347_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202307240418455_neighbourhoods.cs" />
+    <Compile Include="Migrations\202307240418455_neighbourhoods.Designer.cs">
+      <DependentUpon>202307240418455_neighbourhoods.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202307240429139_restaurants.cs" />
+    <Compile Include="Migrations\202307240429139_restaurants.Designer.cs">
+      <DependentUpon>202307240429139_restaurants.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202307240434479_neighbourhood-restaurant.cs" />
+    <Compile Include="Migrations\202307240434479_neighbourhood-restaurant.Designer.cs">
+      <DependentUpon>202307240434479_neighbourhood-restaurant.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202307302244258_Create_PropertyTable_EstateAgents.cs" />
+    <Compile Include="Migrations\202307302244258_Create_PropertyTable_EstateAgents.Designer.cs">
+      <DependentUpon>202307302244258_Create_PropertyTable_EstateAgents.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\202308040535235_neighbour-and-restaurant-dtos.cs" />
     <Compile Include="Migrations\202308040535235_neighbour-and-restaurant-dtos.designer.cs">
@@ -225,6 +246,26 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bin\roslyn\csc.exe" />
+    <Content Include="bin\roslyn\csi.exe" />
+    <Content Include="bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll" />
+    <Content Include="bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll" />
+    <Content Include="bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll" />
+    <Content Include="bin\roslyn\Microsoft.CodeAnalysis.dll" />
+    <Content Include="bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll" />
+    <Content Include="bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll" />
+    <Content Include="bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll" />
+    <Content Include="bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll" />
+    <Content Include="bin\roslyn\System.Buffers.dll" />
+    <Content Include="bin\roslyn\System.Collections.Immutable.dll" />
+    <Content Include="bin\roslyn\System.Memory.dll" />
+    <Content Include="bin\roslyn\System.Numerics.Vectors.dll" />
+    <Content Include="bin\roslyn\System.Reflection.Metadata.dll" />
+    <Content Include="bin\roslyn\System.Runtime.CompilerServices.Unsafe.dll" />
+    <Content Include="bin\roslyn\System.Text.Encoding.CodePages.dll" />
+    <Content Include="bin\roslyn\System.Threading.Tasks.Extensions.dll" />
+    <Content Include="bin\roslyn\vbc.exe" />
+    <Content Include="bin\roslyn\VBCSCompiler.exe" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-grid.rtl.css" />
@@ -244,12 +285,18 @@
     <Content Include="Content\photos\apartment.png" />
     <Content Include="Content\photos\background.png" />
     <Content Include="Content\photos\bathroom.png" />
+    <Content Include="Content\photos\calendar.png" />
     <Content Include="Content\photos\dimension.png" />
     <Content Include="Content\photos\double-bed.png" />
     <Content Include="Content\photos\home.png" />
+    <Content Include="Content\photos\location %281%29.png" />
+    <Content Include="Content\photos\location.png" />
     <Content Include="Content\photos\platter.png" />
     <Content Include="Content\photos\residential.png" />
     <Content Include="Content\photos\restaurant.png" />
+    <Content Include="Content\photo_property\1001_01.jpg" />
+    <Content Include="Content\photo_property\1001_02.jpg" />
+    <Content Include="Content\photo_property\1001_03.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -259,6 +306,17 @@
     <Content Include="Scripts\bootstrap.esm.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="bin\roslyn\csc.exe.config" />
+    <Content Include="bin\roslyn\csc.rsp" />
+    <Content Include="bin\roslyn\csi.exe.config" />
+    <Content Include="bin\roslyn\csi.rsp" />
+    <Content Include="bin\roslyn\Microsoft.CSharp.Core.targets" />
+    <Content Include="bin\roslyn\Microsoft.Managed.Core.CurrentVersions.targets" />
+    <Content Include="bin\roslyn\Microsoft.Managed.Core.targets" />
+    <Content Include="bin\roslyn\Microsoft.VisualBasic.Core.targets" />
+    <Content Include="bin\roslyn\vbc.exe.config" />
+    <Content Include="bin\roslyn\vbc.rsp" />
+    <Content Include="bin\roslyn\VBCSCompiler.exe.config" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />
@@ -316,6 +374,7 @@
     <Content Include="Views\Neighbourhood\Error.cshtml" />
     <Content Include="Views\Neighbourhood\List.cshtml" />
     <Content Include="Views\Neighbourhood\New.cshtml" />
+    <Content Include="Views\Home\PropertyDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -348,6 +407,21 @@
     <Content Include="Scripts\jquery-3.7.0.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Migrations\202307240404347_InitialCreate.resx">
+      <DependentUpon>202307240404347_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307240418455_neighbourhoods.resx">
+      <DependentUpon>202307240418455_neighbourhoods.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307240429139_restaurants.resx">
+      <DependentUpon>202307240429139_restaurants.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307240434479_neighbourhood-restaurant.resx">
+      <DependentUpon>202307240434479_neighbourhood-restaurant.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307302244258_Create_PropertyTable_EstateAgents.resx">
+      <DependentUpon>202307302244258_Create_PropertyTable_EstateAgents.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202308040535235_neighbour-and-restaurant-dtos.resx">
       <DependentUpon>202308040535235_neighbour-and-restaurant-dtos.cs</DependentUpon>
     </EmbeddedResource>

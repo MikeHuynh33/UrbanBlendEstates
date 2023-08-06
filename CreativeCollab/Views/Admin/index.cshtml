@@ -145,14 +145,20 @@
         border-radius: 15px;
         cursor: pointer;
     }
+    .display_flex{
+        display:flex;
+    }
+    .display_none{
+        display:none;
+    }
 </style>
 @{/*Admin With Property And Agent */}
 <div class="row justify-content-center align-items-center mt-4">
-    <button  type="button" class="btn btn-primary w-25 px-3 me-2 " >Property - Agent</button>
-    <button type="button" class="btn btn-warning w-25 px-3 me-2 ">Resturant</button>
-    <button  type="button" class="btn btn-success w-25 px-3">Book</button>
+    <button onclick="showContent(1)" type="button" class="btn btn-primary w-25 px-3 me-2 ">Property - Agent</button>
+    <button onclick="showContent(2)" type="button" class="btn btn-warning w-25 px-3 me-2 ">Restaurant</button>
+    <button onclick="showContent(3)" type="button" class="btn btn-success w-25 px-3">Booking</button>
 </div>
-<div class="Task_container" id="Property_part">
+<div class="Task_container" id="Content">
     <div id="Task_Property_Container" class="Task_Property_Container text-white ">
         <h2>Property Details:</h2> <button class="btn_add btn btn-primary"><a class="text-black fw-bold text-decoration-none" href="/Admin/AddNewProperty">Add Property</a></button>
         <form method="GET" action="/Admin">
@@ -171,8 +177,8 @@
             </div>
         }
         <div id="pagination_property">
-            <button onclick="previousPage_property()">Previous</button>
-            <button onclick="nextPage_property()">Next</button>
+            <button class="btn btn-primary px-2" onclick="previousPage_property()">Previous</button>
+            <button class="btn btn-primary px-3" onclick="nextPage_property()">Next</button>
         </div>
     </div>
     <div id="Task_Agent_Container" class="Task_Agent_Container text-white ">
@@ -193,18 +199,30 @@
             </div>
         }
         <div id="pagination">
-            <button onclick="previousPage()">Previous</button>
-            <button onclick="nextPage()">Next</button>
+            <button class="btn btn-primary px-2" onclick="previousPage()">Previous</button>
+            <button class="btn btn-primary px-3" onclick="nextPage()">Next</button>
         </div>
     </div>
 </div>
 @{/*Admin With Resturants */}
+<div class="container" id="Content" style="display:none">
     <div class="row">
+        <h1>Restaurant</h1>
 
 
 
 
     </div>
+</div>
+@{/*Admin With Booking */}
+<div class="container" id="Content" style="display:none">
+    <div class="row">
+        <h1>Booking</h1>
+
+
+
+    </div>
+</div>
 <script>
     var container = document.getElementById("Task_Agent_Container");
     var children = container.getElementsByClassName("agent_item");
@@ -273,5 +291,20 @@
         }
     }
     showPage_property(currentPage_property);
+
+
+    // Create showContent function () when admin choose the content they want to see.
+    function showContent(content_number) {
+        var contents = document.querySelectorAll("#Content");
+        // close all the content by set display -> none;
+        for (var i = 0; i < contents.length; i++) {
+            contents[i].style.display = 'none';
+        }
+        
+        if (content_number) {
+            content_number = content_number - 1;
+            contents[content_number].style.display = 'flex';
+        }
+    }
 </script>
 

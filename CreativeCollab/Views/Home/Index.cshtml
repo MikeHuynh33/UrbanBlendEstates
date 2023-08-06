@@ -167,11 +167,18 @@
                 {
                     <div class="col-md-4 col-xxl-3 mb-4 property_item justify-content-center align-items-center">
                         <div class="card" style="width: 18rem;">
-                            <img src="..." class="card-img-top" alt="...">
+                            @if (!string.IsNullOrEmpty(property.ImageFileNames))
+                                    {
+                                        var filenames = property.ImageFileNames.Split(',');
+                                        var displayedFilenames = filenames.FirstOrDefault();
+                                       
+                                        <img src="@Url.Content("~/Uploads/" + @displayedFilenames)" class="card-img-top" alt="Property Image" />
+                            }
+               
                             <div class="card-body">
                                 <h5 class="card-title">@property.PropertyAddress</h5>
                                 <p class="card-text">Some quick example text for card 1.</p>
-                                <a href='/Home/PropertyDetail/@property.PropertyID'  class="btn btn-primary">More Details</a>
+                                <a href='/Home/PropertyDetail/@property.PropertyID' class="btn btn-primary">More Details</a>
                             </div>
                         </div>
                     </div>

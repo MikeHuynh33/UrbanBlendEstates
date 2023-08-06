@@ -1,0 +1,133 @@
+﻿
+@{
+    ViewBag.Title = "AddNewProperty";
+}
+<style>
+
+    .row {
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: 10px;
+    }
+
+    .col-6 {
+        flex: 0 0 50%;
+        max-width: 50%;
+        padding: 0 10px;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    textarea,
+    select {
+        width: 100%;
+        padding: 15px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+    }
+
+    input[type="submit"] {
+        display:block;
+        margin-left:auto;
+        padding: 10px 20px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+    .newProperty_Form_container{
+        display:flex;
+        justify-content:center;
+        margin:4em;
+    }
+    #propertyAddress {
+        width: 280%;
+    }
+    h2 {
+        display:block;
+        font-size:2.5em;
+        margin-left: 5em;
+        margin-top:1em;
+        font-weight: 600;
+    }
+    #ImageFileText {
+        width: 280%;
+    }
+</style>
+<h2>AddNewProperty</h2>
+
+<div class="newProperty_Form_container">
+    <form method="Post" action="/Admin/NewProperty" enctype = "multipart/form-data" >
+        <div class="row">
+            <div class="col-6">
+                <label for="propertyAddress">Property Address:</label>
+                <input type="text" id="propertyAddress" name="propertyAddress" required>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <label for="propertyType">Property Type:</label>
+                <input type="text" id="propertyType" name="propertyType" required>
+            </div>
+            <div class="col-6">
+                <label for="propertySize">Property Size:</label>
+                <input type="text" id="propertySize" name="propertySize" required>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <label for="numberOfBedrooms">Number of Bedrooms:</label>
+                <input type="number" id="numberOfBedrooms" name="numberOfBedrooms" required>
+            </div>
+            <div class="col-6">
+                <label for="numberOfBathrooms">Number of Bathrooms:</label>
+                <input type="number" id="numberOfBathrooms" name="numberOfBathrooms" required>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <label for="amenities">Amenities:</label>
+                <input type="text" id="amenities" name="amenities" required>
+            </div>
+            <div class="col-6">
+                <label for="propertyPrice">Property Price:</label>
+                <input type="number" id="propertyPrice" name="propertyPrice" step="0.01" required>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <label for="listingDate">Listing Date:</label>
+                <input type="date" id="listingDate" name="listingDate" required>
+            </div>
+            <div class="col-6">
+                <label for="propertyStatus">Property Status:</label>
+                <select id="propertyStatus" name="propertyStatus" required>
+                    <option value="Available">Available</option>
+                    <option value="Sold">Sold</option>
+                    <option value="Pending">Pending</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <label for="ImageFileName">ImageFileText:</label>
+                <input type="file" id="ImageFileNames" name="ImageFiles" multiple>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <label for="propertyDescription">Property Description:</label>
+                <textarea id="propertyDescription" name="propertyDescription" required></textarea>
+            </div>
+        </div>
+        <input type="submit" value="Submit">
+    </form>
+
+</div>

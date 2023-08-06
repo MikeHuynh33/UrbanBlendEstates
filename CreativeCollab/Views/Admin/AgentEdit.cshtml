@@ -1,0 +1,75 @@
+﻿@model CreativeCollab.Models.EstateAgentDTO
+@{
+    ViewBag.Title = "AgentEdit";
+}
+
+<h2>AgentEdit</h2>
+
+<style>
+    label {
+        display: block;
+        margin-bottom: 10px;
+        font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    select {
+        width: 100%;
+        padding: 5px 25px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+    }
+
+    input[type="submit"] {
+        display: block;
+        padding: 10px 20px;
+        margin-top: 1.5em;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        cursor: pointer;
+        margin-left: auto;
+    }
+
+    .newAgent_Form_container {
+        display: flex;
+        justify-content: center;
+        margin: 4em;
+    }
+
+    h2 {
+        display: block;
+        font-size: 2.5em;
+        margin-left: 5em;
+        margin-top: 1em;
+        font-weight: 600;
+    }
+</style>
+
+<h2>AddNewAgent</h2>
+<div class="newAgent_Form_container">
+    <form action="/Admin/AgentUpdate/@Model.EstateAgentId" method="POST">
+        <label for="name">Name:</label>
+        <input type="hidden" id="EstateAgentId" name="EstateAgentId" value="@Model.EstateAgentId" />
+        <input type="text" id="name" name="name" value="@Model.Name" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" value="@Model.Email" name="email" required>
+
+        <label for="phone">Phone:</label>
+        <input type="tel" id="phone" value="@Model.Phone" name="phone" required>
+
+        <label for="role">Role:</label>
+        <select id="role" name="role" required>
+            <option value="">Select a role</option>
+            <option value="Agent" @if (Model.Role == "Agent") { <text>selected</text>} >Agent</option>
+            <option value="Broker" @if (Model.Role == "Broker") { <text>selected</text>}>Broker</option>
+            <option value="Estimator"@if (Model.Role == "Estimator") { <text>selected</text>}>Estimator</option>
+            <option value="Analyst"@if (Model.Role == "Analyst") { <text>selected</text>}>Analyst</option>
+        </select>
+
+        <input type="submit" value="Submit">
+    </form>
+</div>

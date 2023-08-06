@@ -194,6 +194,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\AgentDataController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -375,6 +376,15 @@
     <Content Include="Views\Neighbourhood\List.cshtml" />
     <Content Include="Views\Neighbourhood\New.cshtml" />
     <Content Include="Views\Home\PropertyDetail.cshtml" />
+    <Content Include="Views\Admin\AddNewAgent.cshtml" />
+    <Content Include="Views\Admin\AddNewProperty.cshtml" />
+    <Content Include="Views\Admin\AgentDetail.cshtml" />
+    <Content Include="Views\Admin\AgentEdit.cshtml" />
+    <Content Include="Views\Admin\DeleteAgentConfirm.cshtml" />
+    <Content Include="Views\Admin\DeleteConfirm.cshtml" />
+    <Content Include="Views\Admin\index.cshtml" />
+    <Content Include="Views\Admin\PropertyDetail.cshtml" />
+    <Content Include="Views\Admin\PropertyEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,70 @@
+﻿
+@{
+    ViewBag.Title = "AddNewAgent";
+}
+<style>
+    label {
+        display: block;
+        margin-bottom: 10px;
+        font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    select {
+        width: 100%;
+        padding: 5px 25px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+    }
+
+    input[type="submit"] {
+        display: block;
+        padding: 10px 20px;
+        margin-top:1.5em;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        cursor: pointer;
+        margin-left:auto;
+    }
+    .newAgent_Form_container {
+        display: flex;
+        justify-content: center;
+        margin: 4em;
+    }
+    h2 {
+        display: block;
+        font-size: 2.5em;
+        margin-left: 5em;
+        margin-top: 1em;
+        font-weight: 600;
+    }
+</style>
+
+<h2>AddNewAgent</h2>
+<div class="newAgent_Form_container">
+    <form action="/Admin/NewAgent" method="POST">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="phone">Phone:</label>
+        <input type="tel" id="phone" name="phone" required>
+
+        <label for="role">Role:</label>
+        <select id="role" name="role" required>
+            <option value="">Select a role</option>
+            <option value="Agent">Agent</option>
+            <option value="Broker">Broker</option>
+            <option value="Estimator">Estimator</option>
+            <option value="Real Analyst">Real Analyst</option>
+        </select>
+
+        <input type="submit" value="Submit">
+    </form>
+</div>
+    

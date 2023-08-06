@@ -1,0 +1,277 @@
+﻿@model CreativeCollab.Models.AgentsAndPropertiesViewModel
+@{
+
+    ViewBag.Title = "index";
+}
+<style>
+    .Task_container {
+        margin-top: 2em;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 2em;
+        flex-wrap: wrap;
+    }
+
+    .Task_Property_Container {
+        background: rgba(0, 0, 0, 0.55);
+        border-radius: 16px;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(12.2px);
+        -webkit-backdrop-filter: blur(12.2px);
+        border: 1px solid rgba(0, 0, 0, 0.59);
+        -webkit-backdrop-filter: blur(5.3px);
+        flex-basis: calc(50% - 2em );
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        border-radius: 15px;
+        gap: 1.5em;
+        border: 2px solid black;
+        padding: 2em;
+    }
+
+        .Task_Property_Container form {
+            display: block;
+            text-align: right;
+            margin-left: 1em;
+            margin-top: 1em;
+            margin-bottom: 1em;
+        }
+
+        .Task_Property_Container input[type="text"] {
+            width: 300px;
+            border: 3px solid black;
+        }
+
+        .Task_Property_Container input[type="submit"] {
+            margin-left: 1em;
+            padding: 3px 10px;
+            border-radius: 15px;
+        }
+
+    .Task_Agent_Container {
+        background: rgba(0, 0, 0, 0.55);
+        border-radius: 16px;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(12.2px);
+        -webkit-backdrop-filter: blur(12.2px);
+        border: 1px solid rgba(0, 0, 0, 0.59);
+        -webkit-backdrop-filter: blur(5.3px);
+        position: relative;
+        flex-basis: calc(50% - 2em );
+        display: flex;
+        flex-direction: column;
+        border-radius: 15px;
+        border: 2px solid black;
+        gap: 1.5em;
+        padding: 2em;
+    }
+
+        .Task_Agent_Container input[type="text"] {
+            width: 300px;
+            border: 3px solid black;
+        }
+
+        .Task_Agent_Container form {
+            display: block;
+            text-align: right;
+            margin-left: 1em;
+            margin-top: 1em;
+            margin-bottom: 1em;
+        }
+
+        .Task_Agent_Container input[type="text"] {
+            width: 300px;
+            border: 3px solid black;
+        }
+
+        .Task_Agent_Container input[type="submit"] {
+            margin-left: 1em;
+            padding: 3px 10px;
+            border-radius: 15px;
+        }
+
+    .btn_add {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        width: 10em;
+        height: 2em;
+    }
+
+    .property_item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 2px dotted black;
+        padding-bottom: 5px;
+    }
+
+    .property_address {
+        font-size: 1.2em;
+        font-family: bold;
+    }
+
+    .property_btn a {
+        padding: 5px;
+        font-size: 1.1em;
+        font-weight: 600;
+        border: 2px solid black;
+        margin-left: 5px;
+        border-radius: 15px;
+        cursor: pointer;
+    }
+
+    .agent_item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 2px dotted black;
+        padding-bottom: 5px;
+    }
+
+    .agent_name {
+        font-size: 1.2em;
+        font-family: bold;
+    }
+
+    .agent_btn a {
+        padding: 5px;
+        font-size: 1.1em;
+        font-weight: 600;
+        border: 2px solid black;
+        margin-left: 5px;
+        border-radius: 15px;
+        cursor: pointer;
+    }
+</style>
+@{/*Admin With Property And Agent */}
+<div class="row justify-content-center align-items-center mt-4">
+    <button  type="button" class="btn btn-primary w-25 px-3 me-2 " >Property - Agent</button>
+    <button type="button" class="btn btn-warning w-25 px-3 me-2 ">Resturant</button>
+    <button  type="button" class="btn btn-success w-25 px-3">Book</button>
+</div>
+<div class="Task_container" id="Property_part">
+    <div id="Task_Property_Container" class="Task_Property_Container text-white ">
+        <h2>Property Details:</h2> <button class="btn_add btn btn-primary"><a class="text-black fw-bold text-decoration-none" href="/Admin/AddNewProperty">Add Property</a></button>
+        <form method="GET" action="/Admin">
+            <input type="text" name="searchProperty" />
+            <input type="submit" value="Search" />
+        </form>
+        @foreach (var property in Model.Properties)
+        {
+            <div class="property_item">
+                <div class="property_address">
+                    @property.PropertyAddress
+                </div>
+                <div class="property_btn">
+                    <a class="btn btn-outline-primary me-2 px-2" href='/Admin/PropertyDetail/@property.PropertyID'>View</a><a class="btn btn-outline-primary me-2 px-3" href='/Admin/PropertyEdit/@property.PropertyID'>Edit</a><a class="btn btn-outline-primary me-2" href='/Admin/DeleteConfirm/@property.PropertyID'>Delete</a>
+                </div>
+            </div>
+        }
+        <div id="pagination_property">
+            <button onclick="previousPage_property()">Previous</button>
+            <button onclick="nextPage_property()">Next</button>
+        </div>
+    </div>
+    <div id="Task_Agent_Container" class="Task_Agent_Container text-white ">
+        <h2>Agents Details:</h2> <button class="btn_add btn btn-primary"><a class="text-black fw-bold text-decoration-none" href="/Admin/AddNewAgent">Add Agent</a></button>
+        <form method="GET" action="/Admin">
+            <input type="text" name="Searchproperty" />
+            <input type="submit" value="Search" />
+        </form>
+        @foreach (var agent in Model.Agents)
+        {
+            <div class="agent_item">
+                <div class="agent_name">
+                    @agent.Name <br /> @agent.Email | @agent.Role
+                </div>
+                <div class="agent_btn">
+                    <a class="btn btn-outline-primary me-2 px-2" href='/Admin/AgentDetail/@agent.EstateAgentId'>View</a><a class="btn btn-outline-primary me-2 px-3" href='/Admin/AgentEdit/@agent.EstateAgentId'>Edit</a><a class="btn btn-outline-primary me-2" href='/Admin/DeleteAgentConfirm/@agent.EstateAgentId'>Delete</a>
+                </div>
+            </div>
+        }
+        <div id="pagination">
+            <button onclick="previousPage()">Previous</button>
+            <button onclick="nextPage()">Next</button>
+        </div>
+    </div>
+</div>
+@{/*Admin With Resturants */}
+    <div class="row">
+
+
+
+
+    </div>
+<script>
+    var container = document.getElementById("Task_Agent_Container");
+    var children = container.getElementsByClassName("agent_item");
+    var itemsPerPage = 5;
+    var currentPage = 1;
+
+    function showPage(page) {
+        var startIndex = (page - 1) * itemsPerPage;
+        var endIndex = startIndex + itemsPerPage;
+
+        for (var i = 0; i < children.length; i++) {
+            if (i >= startIndex && i < endIndex) {
+                children[i].style.display = "flex";
+            } else {
+                children[i].style.display = "none";
+            }
+        }
+    }
+
+    function nextPage() {
+        if (currentPage < Math.ceil(children.length / itemsPerPage)) {
+            currentPage++;
+            showPage(currentPage);
+        }
+    }
+
+    function previousPage() {
+        if (currentPage > 1) {
+            currentPage--;
+            showPage(currentPage);
+        }
+    }
+
+    showPage(currentPage);
+
+    // Property Panigation
+    var container_property = document.getElementById("Task_Property_Container");
+    var children_property = container_property.getElementsByClassName("property_item");
+    var itemsPerPage_property = 7;
+    var currentPage_property = 1;
+
+    function showPage_property(page) {
+        var startIndex = (page - 1) * itemsPerPage_property;
+        var endIndex = startIndex + itemsPerPage_property;
+
+        for (var i = 0; i < children_property.length; i++) {
+            if (i >= startIndex && i < endIndex) {
+                children_property[i].style.display = "flex";
+            } else {
+                children_property[i].style.display = "none";
+            }
+        }
+    }
+
+    function nextPage_property() {
+        if (currentPage_property < Math.ceil(children_property.length / itemsPerPage_property)) {
+            currentPage_property++;
+            showPage_property(currentPage_property);
+        }
+    }
+
+    function previousPage_property() {
+        if (currentPage_property > 1) {
+            currentPage_property--;
+            showPage_property(currentPage_property);
+        }
+    }
+    showPage_property(currentPage_property);
+</script>
+

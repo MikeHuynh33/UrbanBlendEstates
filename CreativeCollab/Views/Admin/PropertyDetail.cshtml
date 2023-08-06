@@ -1,0 +1,141 @@
+﻿@model CreativeCollab.Models.PropertyDetailAndAllAgentsViewModel
+@{
+    ViewBag.Title = "PropertyDetail";
+}
+<style>
+    .PropertyDetail_container{
+        display:flex;
+        justify-content:center;
+        flex-direction:column;
+        margin:4em 5em;
+    }
+    .property_header{
+        flex-basis: calc(100% - 3em);
+        border:2px solid black;
+        font-size:2.5em;
+        padding:0.4em;
+        text-align:center;
+    }
+    .property_body {
+        flex-basis: calc(100% - 3em);
+        border: 2px solid black;
+        text-align: center;
+        font-size: 1.5em;
+        display:flex;
+    }
+    .property_body_leftside {
+        flex:70%;
+        border: 2px solid black;
+        display:flex;
+        flex-direction:column;
+        gap: 0.4em;
+    }
+    .property_body_rightside {
+        flex:30%;
+        border: 2px solid black;
+    }
+    .property_body_leftside_item {
+        text-align: left;
+        margin-left:3em;
+    }
+    .Detail_header {
+        text-align:left;
+        margin : 0.4em;
+        font-size:1.2em;
+        font-weight:bold;
+    }
+    .agent-list {
+        display: flex;
+        flex-direction: column;
+        align-items:flex-start;
+        max-height: 500px; 
+        overflow-y: scroll;
+        margin-left: 1.5em;
+    }
+    .btn_edit_agent{
+        margin-top:15px;
+        padding: 0.3em 1em;
+        border:2px solid black;
+        border-radius:15px;
+    }
+    .btn_edit_agent:hover{
+        background-color:#ff8c00;
+        font-weight:bolder;
+    }
+    .headingline{
+        margin-left:1em;
+        font-weight: bold;
+    }
+    .btn_back {
+        padding: 5px 10px;
+        margin-left: 2em;
+        font-size:1em;
+    }
+</style>
+<h2 class="headingline"><a class="btn_back" href=".."> < </a> PropertyDetail </h2>
+   
+<div class="PropertyDetail_container">
+    <div class="property_header">Address: @Model.Properties.PropertyAddress</div>
+    <div class="property_body">
+        <div class="property_body_leftside"> 
+            <div class="Detail_header">Details :</div>
+            <div class="property_body_leftside_item">Property Type: @Model.Properties.PropertyType </div>
+            <div class="property_body_leftside_item">Property Size: @Model.Properties.PropertySize </div>
+            <div class="property_body_leftside_item">Property Price: @Model.Properties.PropertyPrice $ </div>
+            <div class="property_body_leftside_item">Property Amenities: @Model.Properties.Amenities </div>
+            <div class="property_body_leftside_item">BedRooms #: @Model.Properties.NumberOfBedrooms | BathRooms #: @Model.Properties.NumberOfBathrooms</div>
+            <div class="property_body_leftside_item">Property Status: @Model.Properties.PropertyStatus </div>
+            <div class="property_body_leftside_item">Property Description:<br /> &nbsp;&nbsp;@Model.Properties.PropertyDescription</div>
+            <div class="Detail_header">List of Agents :</div>
+            <div class="property_body_leftside_item">
+                @if (@Model.Properties.Agents != null && @Model.Properties.Agents.Count > 0)
+                {
+                    <ul>
+                        @foreach (var agent in @Model.Properties.Agents)
+                        {
+                            <li>
+                                Name: @agent.Name <br />
+                                Email: @agent.Email <br />
+                                Phone: @agent.Phone <br />
+                                Role: @agent.Role <br />
+                            </li>
+                        }
+                    </ul>
+                }
+                else
+                {
+                    <p>No agents found for this property.</p>
+                }
+            </div>
+        </div>
+        <div class="property_body_rightside">
+            <div class="Detail_header">Edit Agent:</div>
+            <form action="/Admin/PropertyUpdateAgents" method="POST">
+                <input type="hidden" name="propertyID" value="@Model.Properties.PropertyID" />
+                <div class="agent-list">
+                    @{
+                        var allAgentIds = Model.Properties.Agents.Select(agent => agent.EstateAgentId);
+                    }
+
+                    @if (Model.AllAgents != null)
+                    {
+                        foreach (var agent in Model.AllAgents)
+                        {
+                            <label>
+                                <input type="checkbox" name="agentSelected" value="@agent.EstateAgentId"  @{ 
+                                    if (allAgentIds.Contains(agent.EstateAgentId)) {
+                                        <text>checked</text>
+                                    } else {
+                                        <text></text>
+                                        }
+                                    }   > @agent.Name | @agent.Role
+                            </label>
+                        }
+                    }
+                </div>
+                <button class="btn_edit_agent" type="submit">Assign Agents</button>
+            </form>
+        </div>
+
+    </div>
+</div>

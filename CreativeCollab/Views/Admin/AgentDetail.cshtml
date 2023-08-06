@@ -1,0 +1,72 @@
+﻿@model CreativeCollab.Models.EstateAgentDTO
+@{
+    ViewBag.Title = "AgentDetail";
+}
+<style>
+    .agentDetail_container {
+        display: flex;
+        justify-content: flex-start;
+        margin: 2em 4em;
+        border: 2px solid black;
+        flex-wrap:wrap;
+
+    }
+    .agentDetail_left {
+        flex: calc(40% - 8em);
+        display: flex;
+        flex-direction: column;
+        margin: 2em;
+        gap: 1em;
+        font-size: 2em;
+    }
+    .agentDetail_right {
+        flex: calc(60% - 8em);
+        display: flex;
+        flex-direction: column;
+        margin: 2em;
+        gap: 1em;
+        font-size: 2em;
+    }
+    .propertyDetail_content{
+        font-size:0.8em;
+    }
+    .propertyDetail_box{
+        display:flex;
+        flex-direction: row;
+        justify-content:flex-start;
+        flex-wrap:wrap;
+        gap:2em;
+    }
+    .btn_back {
+        display:block;
+        padding: 5px 10px;
+        margin-top: .5em;
+        margin-left: 2em;
+        font-size: 3.5em;
+
+    }
+</style>
+    <a class="btn_back" href=".."> < </a>
+<div class="agentDetail_container">
+    <div class="agentDetail_left">
+        <div>Name : @Model.Name</div>
+        <div>Contact : @Model.Phone</div>
+        <div>Email: @Model.Email</div>
+        <div>Role : @Model.Role</div>
+    </div>
+    <div class="agentDetail_right">
+        <div>List of Property Under @Model.Name management</div>
+        <ul class="propertyDetail_box">
+            @foreach (var property in Model.Properties)
+            {
+                <li class="propertyDetail_content">
+                    <div>@property.PropertyAddress</div>
+                    <div>Type: @property.PropertyType</div>
+                    <div>Status: @property.PropertyStatus</div>
+                    <div>Size: @property.PropertySize</div>
+                </li>
+            }
+
+        </ul>
+    </div>
+</div>

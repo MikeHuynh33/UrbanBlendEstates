@@ -66,6 +66,12 @@ namespace CreativeCollab.Controllers
             }
             
         }
+        [HttpGet]
+        [Route("/Home/BookMeeting/{id}")]
+        public ActionResult BookMeeting(int id)
+        {
+            return View();
+        }
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";

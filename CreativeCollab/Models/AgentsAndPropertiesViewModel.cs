@@ -9,5 +9,6 @@ namespace CreativeCollab.Models
     {
         public IEnumerable<EstateAgentDTO> Agents { get; set; }
         public IEnumerable<PropertyDetailDTO> Properties { get; set; }
+        public IEnumerable<RestaurantDto> Restaurants { get; set; }
     }
 }

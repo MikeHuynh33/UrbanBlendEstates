@@ -4,6 +4,7 @@
     ViewBag.Title = "index";
 }
 <style>
+    /* GENERAL */
     .Task_container {
         margin-top: 2em;
         display: flex;
@@ -13,6 +14,23 @@
         flex-wrap: wrap;
     }
 
+    .btn_add {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        width: 10em;
+        height: 2em;
+    }
+
+    .display_flex {
+        display: flex;
+    }
+
+    .display_none {
+        display: none;
+    }
+
+    /* PROPERTY */
     .Task_Property_Container {
         background: rgba(0, 0, 0, 0.55);
         border-radius: 16px;
@@ -30,26 +48,52 @@
         border: 2px solid black;
         padding: 2em;
     }
+    
+    .Task_Property_Container form {
+        display: block;
+        text-align: right;
+        margin-left: 1em;
+        margin-top: 1em;
+        margin-bottom: 1em;
 
-        .Task_Property_Container form {
-            display: block;
-            text-align: right;
-            margin-left: 1em;
-            margin-top: 1em;
-            margin-bottom: 1em;
-        }
+    }
+    
+    .Task_Property_Container input[type="text"] {
+        width: 300px;
+        border: 3px solid black;
 
-        .Task_Property_Container input[type="text"] {
-            width: 300px;
-            border: 3px solid black;
-        }
+    }
+    
+    .Task_Property_Container input[type="submit"] {
+        margin-left: 1em;
+        padding: 3px 10px;
+        border-radius: 15px;
+    }
 
-        .Task_Property_Container input[type="submit"] {
-            margin-left: 1em;
-            padding: 3px 10px;
-            border-radius: 15px;
-        }
+    .property_item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 2px dotted black;
+        padding-bottom: 5px;
+    }
 
+    .property_address {
+        font-size: 1.2em;
+        font-family: bold;
+    }
+
+    .property_btn a {
+        padding: 5px;
+        font-size: 1.1em;
+        font-weight: 600;
+        border: 2px solid black;
+        margin-left: 5px;
+        border-radius: 15px;
+        cursor: pointer;
+    }
+
+    /* AGENT */
     .Task_Agent_Container {
         background: rgba(0, 0, 0, 0.55);
         border-radius: 16px;
@@ -92,37 +136,6 @@
             border-radius: 15px;
         }
 
-    .btn_add {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        width: 10em;
-        height: 2em;
-    }
-
-    .property_item {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        border-bottom: 2px dotted black;
-        padding-bottom: 5px;
-    }
-
-    .property_address {
-        font-size: 1.2em;
-        font-family: bold;
-    }
-
-    .property_btn a {
-        padding: 5px;
-        font-size: 1.1em;
-        font-weight: 600;
-        border: 2px solid black;
-        margin-left: 5px;
-        border-radius: 15px;
-        cursor: pointer;
-    }
-
     .agent_item {
         display: flex;
         justify-content: space-between;
@@ -145,12 +158,69 @@
         border-radius: 15px;
         cursor: pointer;
     }
-    .display_flex{
-        display:flex;
+
+    /* RESTAURANT */
+    .Task_Restaurant_Container {
+        background: rgba(0, 0, 0, 0.55);
+        border-radius: 16px;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(12.2px);
+        -webkit-backdrop-filter: blur(12.2px);
+        border: 1px solid rgba(0, 0, 0, 0.59);
+        -webkit-backdrop-filter: blur(5.3px);
+        flex-basis: calc(50% - 2em );
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        border-radius: 15px;
+        gap: 1.5em;
+        border: 2px solid black;
+        padding: 2em;
     }
-    .display_none{
-        display:none;
+
+        .Task_Restaurant_Container form {
+            display: block;
+            text-align: right;
+            margin-left: 1em;
+            margin-top: 1em;
+            margin-bottom: 1em;
+        }
+
+        .Task_Restaurant_Container input[type="text"] {
+            width: 300px;
+            border: 3px solid black;
+        }
+
+        .Task_Restaurant_Container input[type="submit"] {
+            margin-left: 1em;
+            padding: 3px 10px;
+            border-radius: 15px;
+        }
+
+    .restaurant_item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 2px dotted black;
+        padding-bottom: 5px;
     }
+
+    .restaurant_name {
+        font-size: 1.2em;
+        font-family: bold;
+    }
+
+    .restaurant_btn a {
+        padding: 5px;
+        font-size: 1.1em;
+        font-weight: 600;
+        border: 2px solid black;
+        margin-left: 5px;
+        border-radius: 15px;
+        cursor: pointer;
+    }
+
+    
 </style>
 @{/*Admin With Property And Agent */}
 <div class="row justify-content-center align-items-center mt-4">
@@ -204,107 +274,126 @@
         </div>
     </div>
 </div>
+
 @{/*Admin With Resturants */}
-<div class="container" id="Content" style="display:none">
-    <div class="row">
-        <h1>Restaurant</h1>
 
-
-
-
+<div class="Task_container" id="Content" style="display:none">
+    <div id="Task_Restaurant_Container" class="Task_Restaurant_Container text-white ">
+        <h2>Restaurant Details:</h2> <button class="btn_add btn btn-primary"><a class="text-black fw-bold text-decoration-none" href="/Restaurant/New">Add Restaurant</a></button>
+        <form method="GET" action="/Admin">
+            <input type="text" name="searchRestaurant" />
+            <input type="submit" value="Search" />
+        </form>
+        @foreach (var restaurant in Model.Restaurants)
+        {
+            <div class="restaurant_item">
+                <div class="restaurant_name">
+                    @restaurant.RestaurantName
+                </div>
+                <div class="restaurant_btn">
+                    <a class="btn btn-outline-primary me-2 px-2" href='/Restaurant/Details/@restaurant.RestaurantId'>View</a><a class="btn btn-outline-primary me-2 px-3" href='/Restaurant/Edit/@restaurant.RestaurantId'>Edit</a><a class="btn btn-outline-primary me-2" href='/Restaurant/DeleteConfirm/@restaurant.RestaurantId'>Delete</a>
+                </div>
+            </div>
+        }
+        <div id="pagination_restaurant">
+            <!--needs to be edited-->
+            <button class="btn btn-primary px-2" onclick="previousPage_restaurant()">Previous</button>
+            <button class="btn btn-primary px-3" onclick="nextPage_restaurant()">Next</button>
+        </div>
     </div>
 </div>
-@{/*Admin With Booking */}
-<div class="container" id="Content" style="display:none">
-    <div class="row">
-        <h1>Booking</h1>
+
+    @{/*Admin With Booking */}
+    <div class="container" id="Content" style="display:none">
+        <div class="row">
+            <h1>Booking</h1>
 
 
 
+        </div>
     </div>
-</div>
-<script>
-    var container = document.getElementById("Task_Agent_Container");
-    var children = container.getElementsByClassName("agent_item");
-    var itemsPerPage = 5;
-    var currentPage = 1;
+    <script>
+        var container = document.getElementById("Task_Agent_Container");
+        var children = container.getElementsByClassName("agent_item");
+        var itemsPerPage = 5;
+        var currentPage = 1;
 
-    function showPage(page) {
-        var startIndex = (page - 1) * itemsPerPage;
-        var endIndex = startIndex + itemsPerPage;
+        function showPage(page) {
+            var startIndex = (page - 1) * itemsPerPage;
+            var endIndex = startIndex + itemsPerPage;
 
-        for (var i = 0; i < children.length; i++) {
-            if (i >= startIndex && i < endIndex) {
-                children[i].style.display = "flex";
-            } else {
-                children[i].style.display = "none";
+            for (var i = 0; i < children.length; i++) {
+                if (i >= startIndex && i < endIndex) {
+                    children[i].style.display = "flex";
+                } else {
+                    children[i].style.display = "none";
+                }
             }
         }
-    }
 
-    function nextPage() {
-        if (currentPage < Math.ceil(children.length / itemsPerPage)) {
-            currentPage++;
-            showPage(currentPage);
-        }
-    }
-
-    function previousPage() {
-        if (currentPage > 1) {
-            currentPage--;
-            showPage(currentPage);
-        }
-    }
-
-    showPage(currentPage);
-
-    // Property Panigation
-    var container_property = document.getElementById("Task_Property_Container");
-    var children_property = container_property.getElementsByClassName("property_item");
-    var itemsPerPage_property = 7;
-    var currentPage_property = 1;
-
-    function showPage_property(page) {
-        var startIndex = (page - 1) * itemsPerPage_property;
-        var endIndex = startIndex + itemsPerPage_property;
-
-        for (var i = 0; i < children_property.length; i++) {
-            if (i >= startIndex && i < endIndex) {
-                children_property[i].style.display = "flex";
-            } else {
-                children_property[i].style.display = "none";
+        function nextPage() {
+            if (currentPage < Math.ceil(children.length / itemsPerPage)) {
+                currentPage++;
+                showPage(currentPage);
             }
         }
-    }
 
-    function nextPage_property() {
-        if (currentPage_property < Math.ceil(children_property.length / itemsPerPage_property)) {
-            currentPage_property++;
-            showPage_property(currentPage_property);
+        function previousPage() {
+            if (currentPage > 1) {
+                currentPage--;
+                showPage(currentPage);
+            }
         }
-    }
 
-    function previousPage_property() {
-        if (currentPage_property > 1) {
-            currentPage_property--;
-            showPage_property(currentPage_property);
+        showPage(currentPage);
+
+        // Property Panigation
+        var container_property = document.getElementById("Task_Property_Container");
+        var children_property = container_property.getElementsByClassName("property_item");
+        var itemsPerPage_property = 7;
+        var currentPage_property = 1;
+
+        function showPage_property(page) {
+            var startIndex = (page - 1) * itemsPerPage_property;
+            var endIndex = startIndex + itemsPerPage_property;
+
+            for (var i = 0; i < children_property.length; i++) {
+                if (i >= startIndex && i < endIndex) {
+                    children_property[i].style.display = "flex";
+                } else {
+                    children_property[i].style.display = "none";
+                }
+            }
         }
-    }
-    showPage_property(currentPage_property);
+
+        function nextPage_property() {
+            if (currentPage_property < Math.ceil(children_property.length / itemsPerPage_property)) {
+                currentPage_property++;
+                showPage_property(currentPage_property);
+            }
+        }
+
+        function previousPage_property() {
+            if (currentPage_property > 1) {
+                currentPage_property--;
+                showPage_property(currentPage_property);
+            }
+        }
+        showPage_property(currentPage_property);
 
 
-    // Create showContent function () when admin choose the content they want to see.
-    function showContent(content_number) {
-        var contents = document.querySelectorAll("#Content");
-        // close all the content by set display -> none;
-        for (var i = 0; i < contents.length; i++) {
-            contents[i].style.display = 'none';
+        // Create showContent function () when admin choose the content they want to see.
+        function showContent(content_number) {
+            var contents = document.querySelectorAll("#Content");
+            // close all the content by set display -> none;
+            for (var i = 0; i < contents.length; i++) {
+                contents[i].style.display = 'none';
+            }
+
+            if (content_number) {
+                content_number = content_number - 1;
+                contents[content_number].style.display = 'flex';
+            }
         }
-        
-        if (content_number) {
-            content_number = content_number - 1;
-            contents[content_number].style.display = 'flex';
-        }
-    }
-</script>
+    </script>
 

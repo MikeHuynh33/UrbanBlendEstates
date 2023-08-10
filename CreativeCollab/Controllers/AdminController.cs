@@ -37,10 +37,15 @@ namespace ASP.NET_RealEstateManagement.Controllers
             HttpResponseMessage sec_response = client.GetAsync(sec_url).Result;
             IEnumerable<PropertyDetailDTO> properties = sec_response.Content.ReadAsAsync<IEnumerable<PropertyDetailDTO>>().Result;
 
-            AgentsAndPropertiesViewModel viewModel = new AgentsAndPropertiesViewModel
+            string third_url = "restaurantdata/listrestaurants";
+            HttpResponseMessage third_response = client.GetAsync(third_url).Result;
+            IEnumerable<RestaurantDto> restaurants = third_response.Content.ReadAsAsync<IEnumerable<RestaurantDto>>().Result;
+
+            AgentsAndPropertiesViewModel viewModel = new AgentsAndPropertiesViewModel //added restaurants but don't want to rename
             {
                 Agents = agents,
-                Properties = properties
+                Properties = properties,
+                Restaurants = restaurants
             };
             return View(viewModel);
         }

@@ -3,242 +3,247 @@
         ViewBag.Title = "Home Page";
     }
 
-    <main>
-        <style>
-            .content-bar {
-                background: rgba(100, 79, 79, 0.3);
-                border-radius: 16px;
-                box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-                backdrop-filter: blur(5.3px);
-                -webkit-backdrop-filter: blur(5.3px);
-                border: 1px solid rgba(100, 79, 79, 0.3);
-                z-index: 0;
-                transform: translateY(-50%);
-                border: 1px solid black;
-                display: flex;
-                flex-direction: column;
-                gap: 0.4em;
-                flex: 1 1 0px;
-                margin: 0 2em;
-            }
+<main>
+    <style>
+        .content-bar {
+            background: rgba(100, 79, 79, 0.3);
+            border-radius: 16px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(5.3px);
+            -webkit-backdrop-filter: blur(5.3px);
+            border: 1px solid rgba(100, 79, 79, 0.3);
+            z-index: 0;
+            transform: translateY(-50%);
+            border: 1px solid black;
+            display: flex;
+            flex-direction: column;
+            gap: 0.4em;
+            flex: 1 1 0px;
+            margin: 0 2em;
+        }
 
-            .content-bar__text {
-                text-align: center;
-                color: aliceblue;
-                font-size: 1.5em;
-            }
+        .content-bar__text {
+            text-align: center;
+            color: aliceblue;
+            font-size: 1.5em;
+        }
 
-            .content-bar__image {
-                display: block;
-                margin: 0 auto;
-            }
+        .content-bar__image {
+            display: block;
+            margin: 0 auto;
+        }
 
-            .bg-glass {
-                background: rgba(20, 19, 19, 0.76);
-                border-radius: 16px;
-                box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-                backdrop-filter: blur(5px);
-                -webkit-backdrop-filter: blur(5px);
-                border: 1px solid rgba(20, 19, 19, 0.3);
-            }
+        .bg-glass {
+            background: rgba(20, 19, 19, 0.76);
+            border-radius: 16px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border: 1px solid rgba(20, 19, 19, 0.3);
+        }
 
-            .searchbar {
-                margin-bottom: auto;
-                margin-top: auto;
-                height: 60px;
-                background-color: #353b48;
-                border-radius: 30px;
-                padding: 10px;
-            }
+        .searchbar {
+            margin-bottom: auto;
+            margin-top: auto;
+            height: 60px;
+            background-color: #353b48;
+            border-radius: 30px;
+            padding: 10px;
+        }
 
-            .search_input {
-                color: white;
-                border: 0;
-                outline: 0;
-                background: none;
-                width: 0;
-                caret-color: transparent;
-                line-height: 40px;
-                transition: width 0.4s linear;
-            }
+        .search_input {
+            color: white;
+            border: 0;
+            outline: 0;
+            background: none;
+            width: 0;
+            caret-color: transparent;
+            line-height: 40px;
+            transition: width 0.4s linear;
+        }
 
-            .searchbar:hover > .search_input {
-                padding: 0 10px;
-                width: 450px;
-                caret-color: red;
-                transition: width 0.4s linear;
-            }
+        .searchbar:hover > .search_input {
+            padding: 0 10px;
+            width: 450px;
+            caret-color: red;
+            transition: width 0.4s linear;
+        }
 
-            .searchbar:hover > .search_icon {
-                background: white;
-                color: #e74c3c;
-            }
+        .searchbar:hover > .search_icon {
+            background: white;
+            color: #e74c3c;
+        }
 
-            .search_icon {
-                height: 40px;
-                width: 40px;
-                float: right;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                border-radius: 50%;
-                color: white;
-                background-color: transparent;
-                border: none;
-            }
-            .previous {
-                position: absolute;
-                left: -30px;
-                top: 30%;
-                font-size: 6em;
-                font-weight: bolder;
-                color: black;
-                transform: translate(-50%, -50%);
-                width: 30px;
-                height: 30px;
-                border: none;
-                background: none;
-            }
+        .search_icon {
+            height: 40px;
+            width: 40px;
+            float: right;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            color: white;
+            background-color: transparent;
+            border: none;
+        }
 
-            .next {
-                position: absolute;
-                right:-30px;
-                top:30%;
-                font-size:6em;
-                font-weight:bolder;
-                color: black;
-                transform:translate(-50%, -50%);
-                width: 30px;
-                height: 30px;
-                border:none;
-                background:none;
-            }
+        .previous {
+            position: absolute;
+            left: -30px;
+            top: 30%;
+            font-size: 6em;
+            font-weight: bolder;
+            color: black;
+            transform: translate(-50%, -50%);
+            width: 30px;
+            height: 30px;
+            border: none;
+            background: none;
+        }
 
-            .round {
-                border-radius: 50%;
-            }
-        </style>
-        <section class="row position-relative" aria-labelledby="aspnetTitle">
-            <img src="~/Content/photos/background.png" class="img-fluid" alt="...">
-            <div class="d-flex justify-content-sm-around ">
-                <div class="content-bar">
-                    <div class="content-bar__image"><img src="~/Content/photos/platter.png" /></div>
-                    <div class="content-bar__text">Coffee</div>
-                </div>
+        .next {
+            position: absolute;
+            right: -30px;
+            top: 30%;
+            font-size: 6em;
+            font-weight: bolder;
+            color: black;
+            transform: translate(-50%, -50%);
+            width: 30px;
+            height: 30px;
+            border: none;
+            background: none;
+        }
+
+        .round {
+            border-radius: 50%;
+        }
+    </style>
+
+    <section class="row position-relative" aria-labelledby="aspnetTitle">
+        <img src="~/Content/photos/background.png" class="img-fluid" alt="...">
+        <div class="d-flex justify-content-sm-around ">
+            <div class="content-bar">
+                <div class="content-bar__image"><img src="~/Content/photos/platter.png" /></div>
+                <div class="content-bar__text">Coffee Shops</div>
+            </div>
+            <!-- don't need
                 <div class="content-bar">
                     <div class="content-bar__image"><img src="~/Content/photos/restaurant.png" /></div>
                     <div class="content-bar__text">Food</div>
                 </div>
-                <div class="content-bar">
-                    <div class="content-bar__image"><img src="~/Content/photos/residential.png" /></div>
-                    <div class="content-bar__text">Residential</div>
-                </div>
-                <div class="content-bar">
-                    <div class="content-bar__image"><img src="~/Content/photos/apartment.png" /></div>
-                    <div class="content-bar__text">Commercial</div>
+            -->
+            <div class="content-bar">
+                <div class="content-bar__image"><img src="~/Content/photos/residential.png" /></div>
+                <div class="content-bar__text">Residential</div>
+            </div>
+            <div class="content-bar">
+                <div class="content-bar__image"><img src="~/Content/photos/apartment.png" /></div>
+                <div class="content-bar__text">Commercial</div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="row gx-4 p-4 bg-glass">
+            <div class="col d-flex justify-content-t align-items-center flex-column ">
+                <div class="fs-3 text-white">Our Mission</div>
+                <p class="fs-6 text-white mt-2">At Food.ca, our mission is simple yet profound: to turn your real estate dreams into reality. With a focus on trust, transparency, and customer satisfaction, we are committed to providing exceptional experiences and personalized solutions for all your property needs. Let us be your guiding partner in the exciting world of real estate, where your goals become our mission.</p>
+            </div>
+            <div class="col d-flex justify-content-t align-items-center flex-column ">
+                <div class="fs-3 text-white">Our Achievement </div>
+                <p class="fs-6 text-white mt-2">Food.ca is thrilled to receive the coveted Customer Choice Award, a true testament to our dedication in providing unparalleled service and exceeding our clients' expectations. This achievement inspires us to continue delivering top-notch real estate experiences for every individual we have the privilege to serve. </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="container mt-4">
+                <div class="d-flex justify-content-center h-100">
+                    <form class="searchbar" method="GET" action="/Home">
+                        <input class="search_input" type="text" name="searchProperty" placeholder="Search...">
+                        <button type="submit" class="search_icon"><i class="fas fa-search"></i></button>
+                    </form>
                 </div>
             </div>
-        </section>
-        <section>
-            <div class="row gx-4 p-4 bg-glass">
-                <div class="col d-flex justify-content-t align-items-center flex-column ">
-                    <div class="fs-3 text-white">Our Mission</div>
-                    <p class="fs-6 text-white mt-2">At Food.ca, our mission is simple yet profound: to turn your real estate dreams into reality. With a focus on trust, transparency, and customer satisfaction, we are committed to providing exceptional experiences and personalized solutions for all your property needs. Let us be your guiding partner in the exciting world of real estate, where your goals become our mission.</p>
-                </div>
-                <div class="col d-flex justify-content-t align-items-center flex-column ">
-                    <div class="fs-3 text-white">Our Achievement </div>
-                    <p class="fs-6 text-white mt-2">Food.ca is thrilled to receive the coveted Customer Choice Award, a true testament to our dedication in providing unparalleled service and exceeding our clients' expectations. This achievement inspires us to continue delivering top-notch real estate experiences for every individual we have the privilege to serve. </p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="container mt-4">
-                    <div class="d-flex justify-content-center h-100">
-                        <form class="searchbar" method="GET" action="/Home">
-                            <input class="search_input" type="text" name="searchProperty" placeholder="Search...">
-                            <button type="submit" class="search_icon"><i class="fas fa-search"></i></button>
-                        </form>
+        </div>
+        @{/* DISPLAY listing Properties */ }
+
+        <div class="row mt-4 position-relative" id="Task_Property_Container">
+            @foreach (var property in Model.Properties)
+            {
+                <div class="col-md-4 col-xxl-3 mb-4 property_item justify-content-center align-items-center">
+                    <div class="card" style="width: 18rem;">
+                        @if (!string.IsNullOrEmpty(property.ImageFileNames))
+                        {
+                            var filenames = property.ImageFileNames.Split(',');
+                            var displayedFilenames = filenames.FirstOrDefault();
+
+                            <img src="@Url.Content("~/Uploads/" + @displayedFilenames)" class="card-img-top" alt="Property Image" />
+                        }
+
+                        <div class="card-body">
+                            <h5 class="card-title">@property.PropertyAddress</h5>
+                            <p class="card-text">Some quick example text for card 1.</p>
+                            <a href='/Home/PropertyDetail/@property.PropertyID' class="btn btn-primary">More Details</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            @{/* DISPLAY listing Properties */ }
+            }
 
-            <div class="row mt-4 position-relative" id="Task_Property_Container">
-                @foreach (var property in Model.Properties)
+            <button onclick="previousPage_property()" class="previous round">&#8249;</button>
+            <button onclick="nextPage_property()" class="next round">&#8250;</button>
+
+        </div>
+        <div class="mt-4 d-flex justify-content-center text-white fs-2 fw-bolder">Top Agents*</div>
+        @{/* DISPLAY listing Agents */ }
+        <div class="row mt-4  p-3">
+
+            <div class="col-lg-12 d-flex justify-content-center align-items-center flex-row flex-wrap g-2">
+                @foreach (var agent in Model.Agents.Take(5))
                 {
-                    <div class="col-md-4 col-xxl-3 mb-4 property_item justify-content-center align-items-center">
-                        <div class="card" style="width: 18rem;">
-                            @if (!string.IsNullOrEmpty(property.ImageFileNames))
-                                    {
-                                        var filenames = property.ImageFileNames.Split(',');
-                                        var displayedFilenames = filenames.FirstOrDefault();
-                                       
-                                        <img src="@Url.Content("~/Uploads/" + @displayedFilenames)" class="card-img-top" alt="Property Image" />
-                            }
-               
-                            <div class="card-body">
-                                <h5 class="card-title">@property.PropertyAddress</h5>
-                                <p class="card-text">Some quick example text for card 1.</p>
-                                <a href='/Home/PropertyDetail/@property.PropertyID' class="btn btn-primary">More Details</a>
-                            </div>
-                        </div>
+                    <div class="d-flex flex-column flex-grow-1 justify-content-center align-items-center">
+                        <div class="d-block fs-4 fw-bold text-white">@agent.Name</div>
+                        <div class="d-block fs-6 fw-lighter text-white">@agent.Email</div>
+                        <div class="d-block fs-6 fw-lighter text-white">@agent.Phone</div>
+                        <div class="d-block fs-6 fw-lighter text-white">@agent.Role</div>
                     </div>
                 }
-
-                <button onclick="previousPage_property()" class="previous round">&#8249;</button>
-                <button onclick="nextPage_property()" class="next round">&#8250;</button>
-
             </div>
-            <div class="mt-4 d-flex justify-content-center text-white fs-2 fw-bolder">Top Agents*</div>
-            @{/* DISPLAY listing Agents */ }
-            <div class="row mt-4  p-3">
 
-                <div class="col-lg-12 d-flex justify-content-center align-items-center flex-row flex-wrap g-2">
-                    @foreach (var agent in Model.Agents.Take(5))
-                    {
-                        <div class="d-flex flex-column flex-grow-1 justify-content-center align-items-center">
-                            <div class="d-block fs-4 fw-bold text-white">@agent.Name</div>
-                            <div class="d-block fs-6 fw-lighter text-white">@agent.Email</div>
-                            <div class="d-block fs-6 fw-lighter text-white">@agent.Phone</div>
-                            <div class="d-block fs-6 fw-lighter text-white">@agent.Role</div>
-                        </div>
-                    }
-                </div>
+        </div>
+    </section>
 
-            </div>
-        </section>
-        <script>
-            // Property Panigation
-            var container_property = document.getElementById("Task_Property_Container");
-            var children_property = container_property.getElementsByClassName("property_item");
-            var itemsPerPage_property = 6;
-            var currentPage_property = 1;
+    <script>
+        // Property Panigation
+        var container_property = document.getElementById("Task_Property_Container");
+        var children_property = container_property.getElementsByClassName("property_item");
+        var itemsPerPage_property = 6;
+        var currentPage_property = 1;
 
-            function showPage_property(page) {
-                var startIndex = (page - 1) * itemsPerPage_property;
-                var endIndex = startIndex + itemsPerPage_property;
+        function showPage_property(page) {
+            var startIndex = (page - 1) * itemsPerPage_property;
+            var endIndex = startIndex + itemsPerPage_property;
 
-                for (var i = 0; i < children_property.length; i++) {
-                    if (i >= startIndex && i < endIndex) {
-                        children_property[i].style.display = "flex";
-                    } else {
-                        children_property[i].style.display = "none";
-                    }
+            for (var i = 0; i < children_property.length; i++) {
+                if (i >= startIndex && i < endIndex) {
+                    children_property[i].style.display = "flex";
+                } else {
+                    children_property[i].style.display = "none";
                 }
             }
+        }
 
-            function nextPage_property() {
-                if (currentPage_property < Math.ceil(children_property.length / itemsPerPage_property)) {
-                    currentPage_property++;
-                    showPage_property(currentPage_property);
-                }
+        function nextPage_property() {
+            if (currentPage_property < Math.ceil(children_property.length / itemsPerPage_property)) {
+                currentPage_property++;
+                showPage_property(currentPage_property);
             }
+        }
 
-            function previousPage_property() {
-                if (currentPage_property > 1) {
-                    currentPage_property--;
-                    showPage_property(currentPage_property);
-                }
+        function previousPage_property() {
+            if (currentPage_property > 1) {
+                currentPage_property--;
+                showPage_property(currentPage_property);
             }
-            showPage_property(currentPage_property);
-        </script>
-    </main>
+        }
+        showPage_property(currentPage_property);
+    </script>
+</main>

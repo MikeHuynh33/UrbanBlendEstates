@@ -70,8 +70,10 @@
 <div class="newProperty_Form_container">
     <form method="Post" action="/Admin/PropertyUpdate/@Model.PropertyID" enctype = "multipart/form-data">
         <div class="row">
+
             <div class="col-6">
                 <input type="hidden" id="propertyID" name="propertyID" value="@Model.PropertyID" />
+                <input type="hidden" id="NeighbourhoodId" name="NeighbourhoodId" value="@Model.NeighbourhoodId" />
                 <label for="propertyAddress">Property Address:</label>
                 <input type="text" id="propertyAddress" name="propertyAddress" value="@Model.PropertyAddress" required>
             </div>

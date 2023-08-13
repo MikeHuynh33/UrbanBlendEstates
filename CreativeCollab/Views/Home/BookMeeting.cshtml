@@ -1,4 +1,4 @@
-﻿
+﻿@model CreativeCollab.Models.PropertyAndListRestaurants
 @{
     ViewBag.Title = "BookMeeting";
 }
@@ -29,7 +29,7 @@
         cursor: pointer;
     }
     .btn_Detail{
-        top:0;
+        top:6px;
         left:0;
         transform:rotate(90deg) translate(15%,90% );
        
@@ -37,21 +37,22 @@
 </style>
 <div class="container">
     <h1>Please File Form</h1>
-    <form method="POST" >
+    <form method="POST" action="../ProcessBooking" >
         <div class="row">
+            <input type="hidden" name="PropertyId" value= "@Model.Properties.PropertyID" />
             <div class="col-3 ms-5">
                 <label for="client_fname" class="form-label fs-4">First Name:</label>
-                <input type="text" class="form-control" id="client_fname" placeholder="Enter First Name" name="client_fname">
+                <input type="text" class="form-control" id="client_fname" placeholder="Enter First Name" name="FirstName">
             </div>
             <div class="col-3 ms-5">
                 <label for="client_lname" class="form-label fs-4">Last Name:</label>
-                <input type="text" class="form-control" id="client_lname" placeholder="Enter First Name" name="client_lname">
+                <input type="text" class="form-control" id="client_lname" placeholder="Enter First Name" name="LastName">
             </div>
         </div>
         <div class="row mt-2">
             <div class="col-3 ms-5">
                 <label for="client_phone" class="form-label fs-4">Phone :</label>
-                <input type="text" class="form-control" id="client_phone" placeholder="Enter First Name" name="client_phone">
+                <input type="text" class="form-control" id="client_phone" placeholder="Enter First Name" name="Phone">
             </div>
             <div class="col-5 ms-5">
                 <label for="client_TimeDate" class="form-label fs-4">Choose Date And Time :</label>
@@ -60,69 +61,32 @@
                 }
                 <input class="form-control" id="client_TimeDate"
                        type="datetime-local"
-                       name="client_TimeDate"
+                       name="TimeDate"
                        value=@currentDate
                        min=@currentDate />
             </div>
         </div>
+       
         <h2 class="mt-4">Please Choose Our Local Place :</h2>
         <p class="ms-3 mb-4">We encourge you to explore local community.</p>
-        <div class="row">
-            <div class="col-xxl-3 col-xl-4 position-relative">
-                <div class="booking_card_area ">
-                    <input class="booking_checkbox" type="radio" id="2" value="2" name="fav_language" />
-                    <div class="single_booking_card card" style="width: 18rem;">
-                        <img src="~/Content/photo_property/1001_01.jpg" class="card-img-top" alt="Property Image" />
-                        <div class="card-body">
-                            <h5 class="card-title">Restaurant1</h5>
-                            <p class="card-text">Some quick example text for card 1.</p>
-                        </div>
-                    </div>
-                </div>
-                <a href="/Home/BookMeet/RestaurantDetail/1" class="btn btn-primary position-absolute btn_Detail px-1 py-1">Detail</a>
-            </div>
-
-            <div class="col-xxl-3 col-xl-4 position-relative">
-                <div class="booking_card_area ">
-                    <input class="booking_checkbox" type="radio" id="2" value="2" name="fav_language" />
-                    <div class="single_booking_card card" style="width: 18rem;">
-                        <img src="~/Content/photo_property/1001_01.jpg" class="card-img-top" alt="Property Image" />
-                        <div class="card-body">
-                            <h5 class="card-title">Restaurant2</h5>
-                            <p class="card-text">Some quick example text for card 1.</p>
-                        </div>
-                    </div>
-                </div>
-               
-            </div>
-
-            <div class="col-xxl-3 col-xl-4 position-relative">
-                <div class="booking_card_area ">
-                    <input class="booking_checkbox" type="radio" id="2" value="2" name="fav_language" />
-                    <div class="single_booking_card card" style="width: 18rem;">
-                        <img src="~/Content/photo_property/1001_01.jpg" class="card-img-top" alt="Property Image" />
-                        <div class="card-body">
-                            <h5 class="card-title">Restaurant3</h5>
-                            <p class="card-text">Some quick example text for card 1.</p>
-                        </div>
-                    </div>
-                </div>
-              
-            </div>
-
-            <div class="col-xxl-3 col-xl-4 position-relative">
-                <div class="booking_card_area ">
-                    <input class="booking_checkbox" type="radio" id="2" value="2" name="fav_language" />
-                    <div class="single_booking_card card" style="width: 18rem;">
-                        <img src="~/Content/photo_property/1001_01.jpg" class="card-img-top" alt="Property Image" />
-                        <div class="card-body">
-                            <h5 class="card-title">fghgf</h5>
-                            <p class="card-text">Some quick example text for card 1.</p>
-                        </div>
-                    </div>
-                </div>
-               
-            </div>
+        <div class="row gap-1">
+            @foreach (var Res in Model.AllRestaurants)
+            {
+               <div class="col-xxl-3 col-xl-4 position-relative">
+                   <div class="booking_card_area ">
+                       <input class="booking_checkbox" type="radio" id=@Res.RestaurantId value=@Res.RestaurantId name="restaurant_id" />
+                       <div class="single_booking_card card" style="width: 18rem;">
+                           <img src="~/Uploads/@Res.RestaurantLink" class="card-img-top" alt="Property Image" />
+                           <div class="card-body">
+                               <h5 class="card-title">@Res.RestaurantName</h5>
+                               <p class="fs-6 fw-bolder card-text">@Res.Address</p>
+                           </div>
+                       </div>
+                   </div>
+                   <a href="/Restaurant/Details/@Res.RestaurantId" class="btn btn-primary position-absolute btn_Detail  py-1">Detail</a>
+               </div> 
+            }
+            
         </div>
         <div class="row justify-content-end">
              <button type="submit" class="btn btn-primary w-25 ">Submit</button>

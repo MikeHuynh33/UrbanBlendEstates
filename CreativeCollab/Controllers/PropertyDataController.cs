@@ -10,6 +10,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using System.Diagnostics;
+using CreativeCollab.Migrations;
 
 namespace CreativeCollab.Controllers
 {
@@ -155,6 +156,7 @@ namespace CreativeCollab.Controllers
                 Amenities = foundproperty.Amenities,
                 ImageFileNames = foundproperty.ImageFileNames,
                 PropertyPrice = foundproperty.PropertyPrice,
+                NeighbourhoodId= foundproperty.NeighbourhoodId,
                 PropertyDescription = foundproperty.PropertyDescription,
                 PropertyStatus = foundproperty.PropertyStatus,
                 ListingDate = foundproperty.ListingDate,
@@ -238,6 +240,34 @@ namespace CreativeCollab.Controllers
             db.SaveChanges();
 
             return Ok();
+        }
+        [HttpGet]
+        public IHttpActionResult FindTheRestaurantsInNeightbourHood (int id)
+        {
+            PropertyDetail foundproperty = db.PropertyDetails.Find(id);
+            PropertyDetailDTO propertyDTO = new PropertyDetailDTO()
+            {
+                PropertyID = foundproperty.PropertyID,
+                NeighbourhoodId = foundproperty.NeighbourhoodId,
+
+            };
+            int neighbourhoodId = propertyDTO.NeighbourhoodId;
+            List<Restaurant> restaurantsInNeighbourhood = db.Restaurants
+            .Where(r => r.NeighbourhoodId == neighbourhoodId)
+            .ToList();
+            List<RestaurantDto> restaurantDTOs = restaurantsInNeighbourhood
+           .Select(re => new RestaurantDto
+           {
+               RestaurantId = re.RestaurantId,
+               RestaurantName = re.RestaurantName,
+               RestaurantLink = re.RestaurantLink,
+               Address= re.Address,
+               Description = re.Description,
+           })
+           .ToList();
+
+
+            return Ok(restaurantDTOs);
         }
     }
 }

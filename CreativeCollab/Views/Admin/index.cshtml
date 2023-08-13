@@ -220,7 +220,46 @@
         cursor: pointer;
     }
 
-    
+    /* Booking */
+    .Task_Booking_Container {
+        background: rgba(0, 0, 0, 0.55);
+        border-radius: 16px;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(12.2px);
+        -webkit-backdrop-filter: blur(12.2px);
+        border: 1px solid rgba(0, 0, 0, 0.59);
+        -webkit-backdrop-filter: blur(5.3px);
+        position: relative;
+        flex-basis: calc(50% - 2em );
+        display: flex;
+        flex-direction: column;
+        border-radius: 15px;
+        border: 2px solid black;
+        gap: 1.5em;
+        padding: 2em;
+    }
+    .Booking_item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 2px dotted black;
+        padding-bottom: 5px;
+    }
+
+    .Booking_name {
+        font-size: 1.2em;
+        font-family: bold;
+    }
+
+    .Booking_btn a {
+        padding: 5px;
+        font-size: 1.1em;
+        font-weight: 600;
+        border: 2px solid black;
+        margin-left: 5px;
+        border-radius: 15px;
+        cursor: pointer;
+    }
 </style>
 @{/*Admin With Property And Agent */}
 <div class="row justify-content-center align-items-center mt-4">
@@ -304,14 +343,25 @@
 </div>
 
     @{/*Admin With Booking */}
-    <div class="container" id="Content" style="display:none">
-        <div class="row">
-            <h1>Booking</h1>
-
-
-
-        </div>
+<div class="Task_Booking_Container mt-5" id="Content" style="display:none">
+    <h2>Booking Detail:</h2>
+   
+            @foreach (var booking in Model.Bookings)
+            {
+                <div class="Booking_item ">
+                    <div class="Booking_name text-white">
+                     BookingId: @booking.BookingId |Client Frist Name: @booking.FirstName | Client Last Name : @booking.LastName | Client Phone# : @booking.Phone | Time : @booking.TimeDate
+                    </div>
+                    <div class="Booking_btn">
+                        
+                    </div>
+                </div>
+            }
+    <div id="pagination">
+        <button class="btn btn-primary px-2" onclick="previousPage_Booking()">Previous</button>
+        <button class="btn btn-primary px-3" onclick="nextPage_Booking()">Next</button>
     </div>
+</div>
     <script>
         var container = document.getElementById("Task_Agent_Container");
         var children = container.getElementsByClassName("agent_item");
@@ -381,6 +431,39 @@
         }
         showPage_property(currentPage_property);
 
+        // pagation in booking 
+        var container_property = document.getElementById("Task_Booking_Container");
+        var children_property = container_property.getElementsByClassName("Booking_item");
+        var itemsPerPage_property = 7;
+        var currentPage_property = 1;
+
+        function showPage_property(page) {
+            var startIndex = (page - 1) * itemsPerPage_property;
+            var endIndex = startIndex + itemsPerPage_property;
+
+            for (var i = 0; i < children_property.length; i++) {
+                if (i >= startIndex && i < endIndex) {
+                    children_property[i].style.display = "flex";
+                } else {
+                    children_property[i].style.display = "none";
+                }
+            }
+        }
+
+        function nextPage_Booking() {
+            if (currentPage_property < Math.ceil(children_property.length / itemsPerPage_property)) {
+                currentPage_property++;
+                showPage_property(currentPage_property);
+            }
+        }
+
+        function previousPage_Booking() {
+            if (currentPage_property > 1) {
+                currentPage_property--;
+                showPage_property(currentPage_property);
+            }
+        }
+        showPage_Booking(currentPage_property);
 
         // Create showContent function () when admin choose the content they want to see.
         function showContent(content_number) {

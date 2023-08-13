@@ -27,12 +27,13 @@ namespace CreativeCollab.Models
 
         //Add neighbourhood entity to system
         public DbSet<Neighbourhood> Neighbourhoods { get; set; }
-
         public DbSet<Restaurant> Restaurants { get; set; }
         // Create PropertyDetails to store listing property 
         public DbSet<PropertyDetail> PropertyDetails { get; set; }
         // Create Real Estate Agent to store Existing agents 
         public DbSet<EstateAgent> EstateAgents { get; set; }
+        public DbSet<Booking> Booking { get; set; }
+
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();

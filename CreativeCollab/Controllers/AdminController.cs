@@ -41,11 +41,15 @@ namespace ASP.NET_RealEstateManagement.Controllers
             HttpResponseMessage third_response = client.GetAsync(third_url).Result;
             IEnumerable<RestaurantDto> restaurants = third_response.Content.ReadAsAsync<IEnumerable<RestaurantDto>>().Result;
 
+            string fourth_url = "BookingData/ListOfBooking";
+            HttpResponseMessage fourth_response = client.GetAsync(fourth_url).Result;
+            IEnumerable<BookingDTO> booking = fourth_response.Content.ReadAsAsync<IEnumerable<BookingDTO>>().Result;
             AgentsAndPropertiesViewModel viewModel = new AgentsAndPropertiesViewModel //added restaurants but don't want to rename
             {
                 Agents = agents,
                 Properties = properties,
-                Restaurants = restaurants
+                Restaurants = restaurants,
+                Bookings =booking
             };
             return View(viewModel);
         }
@@ -55,7 +59,12 @@ namespace ASP.NET_RealEstateManagement.Controllers
         [Route("/Admin/AddNewProperty")]
         public ActionResult AddNewProperty()
         {
-            return View();
+            string url = "neighbourhooddata/listneighbourhoods";
+            HttpResponseMessage response = client.GetAsync(url).Result;
+            IEnumerable<NeighbourhoodDto> NeighbourhoodOptions = response.Content.ReadAsAsync<IEnumerable<NeighbourhoodDto>>().Result;
+
+            return View(NeighbourhoodOptions);
+
         }
 
 
@@ -142,12 +151,7 @@ namespace ASP.NET_RealEstateManagement.Controllers
         [HttpGet]
         public ActionResult PropertyEdit(int id)
         {
-
             string url = "PropertyData/FindProperty/" + id;
-
-
-
-
             HttpResponseMessage response = client.GetAsync(url).Result;
             PropertyDetailDTO SelectedProperty = response.Content.ReadAsAsync<PropertyDetailDTO>().Result;
             return View(SelectedProperty);

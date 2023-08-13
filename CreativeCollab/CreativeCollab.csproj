@@ -196,6 +196,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\AgentDataController.cs" />
+    <Compile Include="Controllers\BookingDataController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\NeighbourhoodController.cs" />
@@ -226,17 +227,23 @@
     <Compile Include="Migrations\202307302244258_Create_PropertyTable_EstateAgents.Designer.cs">
       <DependentUpon>202307302244258_Create_PropertyTable_EstateAgents.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202308040535235_neighbour-and-restaurant-dtos.cs" />
-    <Compile Include="Migrations\202308040535235_neighbour-and-restaurant-dtos.designer.cs">
-      <DependentUpon>202308040535235_neighbour-and-restaurant-dtos.cs</DependentUpon>
+    <Compile Include="Migrations\202308121713133_TheLatestUpdateMigration.cs" />
+    <Compile Include="Migrations\202308121713133_TheLatestUpdateMigration.designer.cs">
+      <DependentUpon>202308121713133_TheLatestUpdateMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202308130543065_bookingTable.cs" />
+    <Compile Include="Migrations\202308130543065_bookingTable.designer.cs">
+      <DependentUpon>202308130543065_bookingTable.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AgentsAndPropertiesViewModel.cs" />
+    <Compile Include="Models\Booking.cs" />
     <Compile Include="Models\EstateAgent.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Neighbourhood.cs" />
+    <Compile Include="Models\PropertyAndListRestaurants.cs" />
     <Compile Include="Models\PropertyDetail.cs" />
     <Compile Include="Models\PropertyDetailAndAllAgentsViewModel.cs" />
     <Compile Include="Models\Restaurant.cs" />
@@ -329,6 +336,9 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Uploads\res_image101.jpg" />
+    <Content Include="Uploads\res_image102.jpg" />
+    <Content Include="Uploads\res_image103.jpg" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -389,7 +399,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Uploads\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />
@@ -434,8 +443,11 @@
     <EmbeddedResource Include="Migrations\202307302244258_Create_PropertyTable_EstateAgents.resx">
       <DependentUpon>202307302244258_Create_PropertyTable_EstateAgents.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202308040535235_neighbour-and-restaurant-dtos.resx">
-      <DependentUpon>202308040535235_neighbour-and-restaurant-dtos.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202308121713133_TheLatestUpdateMigration.resx">
+      <DependentUpon>202308121713133_TheLatestUpdateMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202308130543065_bookingTable.resx">
+      <DependentUpon>202308130543065_bookingTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

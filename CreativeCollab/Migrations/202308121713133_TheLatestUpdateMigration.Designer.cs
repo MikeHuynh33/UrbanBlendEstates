@@ -7,13 +7,13 @@ namespace CreativeCollab.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class neighbourandrestaurantdtos : IMigrationMetadata
+    public sealed partial class TheLatestUpdateMigration : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(neighbourandrestaurantdtos));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(TheLatestUpdateMigration));
         
         string IMigrationMetadata.Id
         {
-            get { return "202308040535235_neighbour-and-restaurant-dtos"; }
+            get { return "202308121713133_TheLatestUpdateMigration"; }
         }
         
         string IMigrationMetadata.Source

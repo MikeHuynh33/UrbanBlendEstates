@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
+using System.Security.Policy;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
@@ -66,11 +67,56 @@ namespace CreativeCollab.Controllers
             }
             
         }
+
         [HttpGet]
         [Route("/Home/BookMeeting/{id}")]
         public ActionResult BookMeeting(int id)
         {
-            return View();
+            string url = "PropertyData/FindProperty/" + id ;
+            HttpResponseMessage response = client.GetAsync(url).Result;
+            
+            string sec_url = "PropertyData/FindTheRestaurantsInNeightbourHood/" + id;
+            HttpResponseMessage sec_response = client.GetAsync(sec_url).Result;
+
+            if (response.IsSuccessStatusCode && sec_response.IsSuccessStatusCode)
+            {
+                PropertyDetailDTO foundproperty = response.Content.ReadAsAsync<PropertyDetailDTO>().Result;
+                IEnumerable< RestaurantDto> foundrestaurant = sec_response.Content.ReadAsAsync<IEnumerable<RestaurantDto>>().Result;
+
+                PropertyAndListRestaurants viewModel = new PropertyAndListRestaurants{
+                    Properties = foundproperty,
+                    AllRestaurants = foundrestaurant
+                };
+
+
+                return View(viewModel);
+            }
+            else
+            {
+                return View("error");
+            }
+        }
+
+        [HttpPost]
+        [Route("/Home/ProcessBooking")]
+        public ActionResult ProcessBooking(Booking newBooking) {
+
+            string url = "BookingData/CreateBooking";
+            string jsonpayload = jss.Serialize(newBooking);
+            Debug.WriteLine(url);
+            Debug.WriteLine(jsonpayload);
+            HttpContent content = new StringContent(jsonpayload);
+            content.Headers.ContentType.MediaType = "application/json";
+            HttpResponseMessage response = client.PostAsync(url, content).Result;
+            Debug.WriteLine(response);
+            if (response.IsSuccessStatusCode)
+            {
+                return RedirectToAction("../Home");
+            }
+            else
+            {
+                return RedirectToAction("Error");
+            }
         }
         public ActionResult About()
         {

@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<CreativeCollab.Models.NeighbourhoodDto>
 @{
     ViewBag.Title = "AddNewProperty";
 }
@@ -33,29 +33,33 @@
     }
 
     input[type="submit"] {
-        display:block;
-        margin-left:auto;
+        display: block;
+        margin-left: auto;
         padding: 10px 20px;
         background-color: #4CAF50;
         color: white;
         border: none;
         cursor: pointer;
     }
-    .newProperty_Form_container{
-        display:flex;
-        justify-content:center;
-        margin:4em;
+
+    .newProperty_Form_container {
+        display: flex;
+        justify-content: center;
+        margin: 4em;
     }
+
     #propertyAddress {
         width: 280%;
     }
+
     h2 {
-        display:block;
-        font-size:2.5em;
+        display: block;
+        font-size: 2.5em;
         margin-left: 5em;
-        margin-top:1em;
+        margin-top: 1em;
         font-weight: 600;
     }
+
     #ImageFileText {
         width: 280%;
     }
@@ -63,7 +67,7 @@
 <h2>AddNewProperty</h2>
 
 <div class="newProperty_Form_container">
-    <form method="Post" action="/Admin/NewProperty" enctype = "multipart/form-data" >
+    <form method="Post" action="/Admin/NewProperty" enctype="multipart/form-data">
         <div class="row">
             <div class="col-6">
                 <label for="propertyAddress">Property Address:</label>
@@ -125,6 +129,17 @@
             <div class="col-6">
                 <label for="propertyDescription">Property Description:</label>
                 <textarea id="propertyDescription" name="propertyDescription" required></textarea>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <label>Neighbourhood:</label>
+                <select name="NeighbourhoodId">
+                    @foreach (var neighbourhood in Model)
+                    {
+                        <option value="@neighbourhood.NeighbourhoodId"> @neighbourhood.NeighbourhoodName </option>
+                    }
+                </select>
             </div>
         </div>
         <input type="submit" value="Submit">

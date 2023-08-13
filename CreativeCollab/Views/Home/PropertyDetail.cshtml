@@ -73,7 +73,7 @@
                     @{ string[] imageFileArray = @Model.ImageFileNames.Split(','); }
                     @foreach (var img in imageFileArray)
                     {
-                        <div class="carousel-item active">
+                        <div class="carousel-item  @if (Array.IndexOf(imageFileArray, img) == 0) { <text>active</text> }">
                             <img src="@Url.Content("~/Uploads/" + img)" class="d-block w-100" alt="Image" />
                         </div>
                      }

@@ -16,6 +16,12 @@ namespace CreativeCollab.Controllers
         // Connect to local db
         private ApplicationDbContext db = new ApplicationDbContext();
         // Get all Property from database for client to view them.
+        /// <summary>
+        /// ListAgents will handle GET REQUEST to retrieve all Agents from EstateAgent Table.
+        /// </summary>
+        /// <returns>
+        ///     {List of all Agents data from EstateAgent Table}
+        /// </returns>
         [HttpGet]
         [ResponseType(typeof(EstateAgentDTO))]
         public IHttpActionResult ListAgents()
@@ -34,7 +40,13 @@ namespace CreativeCollab.Controllers
                 })); ;
             return Ok(estateAgentDTO);
         }
-
+        /// <summary>
+        /// FindAgent will handle GET REQUEST with ID params , the function will look up in EstateAgents to find sepecific ID of AGENTS
+        /// </summary>
+        /// <param name="id">1</param>
+        /// <returns>
+        ///     Specific Agents that we look for.
+        /// </returns>
         [ResponseType(typeof(EstateAgentDTO))]
         [HttpGet]
         public IHttpActionResult FindAgent(int? id)
@@ -56,7 +68,15 @@ namespace CreativeCollab.Controllers
             }
             return Ok(agentDTO);
         }
-
+        /// <summary>
+        /// FindAgentAssociateWithProperty will handle Get Request with id params, the function will find associated properties that under
+        /// Agent's management by calling bridge table.
+        /// </summary>
+        /// <param name="id">2</param>
+        /// <returns>{
+        ///     The list of all properties that has link between 2 table 
+        /// }
+        /// </returns>
         [ResponseType(typeof(EstateAgentDTO))]
         [HttpGet]
         public IHttpActionResult FindAgentAssociateWithProperty(int? id)
@@ -92,7 +112,12 @@ namespace CreativeCollab.Controllers
             }
             return Ok(agentDTO);
         }
-
+        /// <summary>
+        /// UpdateAgent will handle Post request with JSON data from FORM and Id params. to update specific Agents (ID) and replace old data to new data.
+        /// </summary>
+        /// <param name="id">1</param>
+        /// <param name="agent">{ List of Inputs data from FORM }</param>
+        /// <returns></returns>
         [ResponseType(typeof(void))]
         [HttpPost]
         public IHttpActionResult UpdateAgent(int id, EstateAgent agent)
@@ -128,7 +153,11 @@ namespace CreativeCollab.Controllers
             }
             return StatusCode(HttpStatusCode.NoContent);
         }
-
+        /// <summary>
+        /// AddNewAgent will handle POST REQ with JSON data , it will insert new agent based on REQ(DATA)
+        /// </summary>
+        /// <param name="agent">{ list of input from FORM }</param>
+        /// <returns></returns>
         [HttpPost]
         [ResponseType(typeof(EstateAgent))]
         public IHttpActionResult AddNewAgent(EstateAgent agent)
@@ -141,7 +170,11 @@ namespace CreativeCollab.Controllers
             db.SaveChanges();
             return CreatedAtRoute("DefaultApi", new { id = agent.EstateAgentId }, agent);
         }
-
+        /// <summary>
+        /// DeleteAgent will handle Post Req with ID params , it will delete agents with agentID matching params.
+        /// </summary>
+        /// <param name="id">"1"</param>
+        /// <returns></returns>
         [HttpPost]
         [ResponseType(typeof(EstateAgent))]
         public IHttpActionResult DeleteAgent(int id)
@@ -152,7 +185,11 @@ namespace CreativeCollab.Controllers
             db.SaveChanges();
             return Ok();
         }
-
+        /// <summary>
+        /// AgentExists will handle to genegrate hightest ID
+        /// </summary>
+        /// <param name="id">1</param>
+        /// <returns>hightest ID</returns>
         private bool AgentExists(int id)
         {
             return db.EstateAgents.Count(e => e.EstateAgentId == id) > 0;

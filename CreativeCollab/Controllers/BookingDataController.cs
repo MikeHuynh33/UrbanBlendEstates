@@ -15,6 +15,12 @@ namespace CreativeCollab.Controllers
     public class BookingDataController : ApiController
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+        
+        
+        /// <summary>
+        /// ListofBooking will handle GET Req , this function will retreive all booking data form booking table
+        /// </summary>
+        /// <returns>{ all booking in bookingtable }</returns>
         [HttpGet]
         [ResponseType(typeof(BookingDTO))]
         public IHttpActionResult ListOfBooking()
@@ -34,6 +40,12 @@ namespace CreativeCollab.Controllers
         })); ;
             return Ok(BookingDTO);
         }
+
+        /// <summary>
+        /// CreateBooking will handle Post Request , it will create new booking appointment after client filed form , insert it into bookingtable
+        /// </summary>
+        /// <param name="newBooking">{List of Input from form}</param>
+        /// <returns></returns>
         [HttpPost]
         [ResponseType(typeof(BookingDTO))]
         public IHttpActionResult CreateBooking(Booking newBooking)

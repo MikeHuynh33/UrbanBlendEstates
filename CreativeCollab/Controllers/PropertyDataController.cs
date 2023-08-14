@@ -18,7 +18,13 @@ namespace CreativeCollab.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-
+        /// <summary>
+        ///  ListOfProperties will handle Get Request to restrieve all property_details
+        /// </summary>
+        /// <param ></param>
+        /// <returns>
+        ///     list of All Properties
+        /// </returns>
         // Get all Listing in database
         [HttpGet]
         [ResponseType(typeof(PropertyDetailDTO))]
@@ -47,7 +53,13 @@ namespace CreativeCollab.Controllers
             return Ok(propertyDetailsDTO);
         }
 
-        // If user click search , the controller will return them to whaat they look for
+        /// <summary>
+        ///  ListOfProperties will handle Get Request with String searchProperty 
+        /// </summary>
+        /// <param name="searchProperty">"4 desertrose"</param>
+        /// <returns>
+        ///     list of Properties that has address contain those keywords.
+        /// </returns>
         [HttpGet]
         [ResponseType(typeof(PropertyDetailDTO))]
         public IHttpActionResult ListOfProperties(string searchProperty)
@@ -87,7 +99,11 @@ namespace CreativeCollab.Controllers
             return Ok(propertyDetailsDTO);
         }
 
-        // Get PropertyDetail
+        /// <summary>
+        /// AddNewProperty will handle POST REQUEST to insert data from form to insert into database
+        /// </summary>
+        /// <param name="property">{List of Input from Form}</param>
+        /// <returns></returns>
         [HttpPost]
         [ResponseType(typeof(PropertyDetail))]
         public IHttpActionResult AddNewProperty(PropertyDetail property)
@@ -102,7 +118,11 @@ namespace CreativeCollab.Controllers
         }
 
 
-
+        /// <summary>
+        /// FindPropertyAssociateWithAgent will handle Find Associated Agents based on property-Id Parms, 
+        /// </summary>
+        /// <param name="id"> ID is property_ID</param>
+        /// <returns> Property-Detail and List of Associated Agents based on ID_Property   </returns>
         [ResponseType(typeof(PropertyDetailDTO))]
         [HttpGet]
         public IHttpActionResult FindPropertyAssociateWithAgent(int? id)
@@ -139,7 +159,13 @@ namespace CreativeCollab.Controllers
             }
             return Ok(propertyDTO);
         }
-
+        /// <summary>
+        ///  FindProperty will handle Get queston wit Param, go to database to retrive data from PropertyDetail table , find id matching with id_property
+        /// </summary>
+        /// <param name="id">1</param>
+        /// <returns>
+        /// PropertyDto -> data -> container varblie or data that I declared in Class PropertyDTO class.
+        /// </returns>
         [ResponseType(typeof(PropertyDetailDTO))]
         [HttpGet]
         public IHttpActionResult FindProperty(int? id)
@@ -168,7 +194,17 @@ namespace CreativeCollab.Controllers
             }
             return Ok(propertyDTO);
         }
-
+        /// <summary>
+        /// UpdateProperty will handle Post request with Json data coming in from form submission , address is Id
+        /// </summary>
+        /// <param name="id">1</param>
+        /// <param name="property">{
+        ///     List of Input from Form.
+        ///
+        /// }</param>
+        /// <returns>
+        /// Update propertyDetails table based on ID and modified the specific column with new data.
+        /// </returns>
         [ResponseType(typeof(void))]
         [HttpPost]
         public IHttpActionResult UpdateProperty(int id, PropertyDetail property)
@@ -204,7 +240,17 @@ namespace CreativeCollab.Controllers
             }
             return StatusCode(HttpStatusCode.NoContent);
         }
-
+        /// <summary>
+        /// UpdateProperty will handle Post request with Json data coming in from form submission , address is Id
+        /// </summary>
+        /// <param name="id">1</param>
+        /// <param name="property">{
+        ///     List of Input from Form.
+        ///
+        /// }</param>
+        /// <returns>
+        /// Update propertyDetails table based on ID and modified the specific column with new data.
+        /// </returns>
         [HttpPost]
         [ResponseType(typeof(PropertyDetail))]
         public IHttpActionResult DeleteProperty(int id)
@@ -215,11 +261,21 @@ namespace CreativeCollab.Controllers
             db.SaveChanges();
             return Ok();
         }
+        /// <summary>
+        /// PropertyExists will handle to capture hight's ID 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns> Hightest ID </returns>
         private bool PropertyExists(int id)
         {
             return db.PropertyDetails.Count(e => e.PropertyID == id) > 0;
         }
 
+        /// <summary>
+        /// PropertyUpdateAgents will handle Update from agents which associated with that specific property_id.
+        /// </summary>
+        /// <param name="payload">list of selected agents from checkbox FORM</param>
+        /// <returns>NOT THING</returns>
         [HttpPost]
         public IHttpActionResult PropertyUpdateAgents([FromBody] JObject payload)
         {
@@ -241,6 +297,17 @@ namespace CreativeCollab.Controllers
 
             return Ok();
         }
+        /// <summary>
+        /// FindTheRestaurantsInNeightbourHood will handle GET request with prams:ID. It will go into PropertyDetails based on ID and find
+        /// NeightbourhoodID , and the list of restaurants that have same neighbourhoodID in Restaurants table
+        /// </summary>
+        /// <param name="id">"1"</param>
+        /// <returns>
+        ///     {
+        ///         Property-Data -> PropertyID
+        ///         list of Restaurants -> have same neightbourhoodID
+        ///     }
+        /// </returns>
         [HttpGet]
         public IHttpActionResult FindTheRestaurantsInNeightbourHood (int id)
         {

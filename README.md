@@ -51,13 +51,13 @@ Remember to have a solid understanding of your existing database schema and the 
 
    Our application's interface seamlessly combines real estate and restaurant features, ensuring a consistent look and feel across different devices.
 
-   # Home Screen and Property Search
+   **Home Screen and Property Search**
    -The homepage offers a list of properties stored in our database. Users can easily search for properties using a user-friendly search bar. We also showcase top agents for easy access.
 
    # Property Details
    -Clicking on a property provides detailed information about it, helping users understand its unique features.
 
-   # Booking Appointments
+    Booking Appointments
    -Users can schedule property meetings with owners using the "Meeting" button. Our system intelligently suggests nearby restaurants in the same neighborhood, enhancing the user experience.
 
 ## Functionality Integration

@@ -80,12 +80,8 @@ Remember to have a solid understanding of your existing database schema and the 
 
 
 ## Deployment
-   [Check out how to deploy ASP.NET in AWS](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create_deploy_NET.quickstart.html)
-To deploy the application to your localhost environment:
-
-1. Update the database connection settings in the `config.js` file to match your localhost configuration.
-2. Run the database migration scripts to ensure the database schema is up to date: `npm run migrate`.
-3. Launch the application using `npm start`.
+   
+   [Check out how to deploy ASP.NET in AWS]: https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create_deploy_NET.quickstart.html
 
 ## Localhost Migration
 

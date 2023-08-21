@@ -81,7 +81,7 @@ Remember to have a solid understanding of your existing database schema and the 
 
 ## Deployment
    
-   [Check out how to deploy ASP.NET in AWS]: https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create_deploy_NET.quickstart.html
+   - Check out how to deploy ASP.NET in AWS : https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create_deploy_NET.quickstart.html
 
 ## Localhost Migration
 

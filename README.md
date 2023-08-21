@@ -4,18 +4,42 @@ Welcome to our creative collaboration project that merges a real estate applicat
 
 ## Overview
 
-This project is a creative fusion of a real estate application and a restaurant review application, creating a comprehensive platform that allows users to explore properties and discover local dining options. By merging these two domains, we aim to provide users with a versatile and engaging experience.
+This project is a creative fusion of a real estate application and a restaurant review application, creating a comprehensive platform that allows users to explore properties and discover local dining options. By merging these two domains, we aim to provide users with a versatile and engaging experience to explore local community before they make a purchase.
 
 ## Getting Started
 
 Follow these steps to set up the development environment and get the project running on your machine:
 
-1. Clone this repository to your local machine.
-2. Install the required dependencies by running `npm install` in the project root directory.
-3. Configure the database connection settings in the `config.js` file.
-4. Run the database migration scripts to set up the required schema: `npm run migrate`.
-5. Start the application by running `npm start`.
-6. Access the application through your browser at `http://localhost:3000`.
+1. **Clone the Repository:**
+   - Clone the repository of the ASP.NET project to your local machine using a Git client or the command line.
+
+2. **Open the Project in Visual Studio:**
+   - Open Visual Studio.
+   - Go to `File` > `Open` > `Project/Solution` and navigate to the cloned project's directory to open the solution file (usually ending in `.sln`).
+
+3. **Open Package Manager Console:**
+   - In Visual Studio, go to `Tools` > `NuGet Package Manager` > `Package Manager Console`.
+
+4. **Select Default Project:**
+   - At the top of the NuGet Package Manager Console, make sure you select the correct project (the one with your Entity Framework DbContext) from the "Default Project" dropdown list.
+
+5. **Run Migrations and Update Database:**
+   - Run the migration command to create and apply migrations:
+     ```
+     Add-Migration InitialCreate
+     ```
+   - This command will create a migration based on the changes detected in your DbContext.
+   - After creating the migration, run the update database command to apply the migration and update the database schema:
+     ```
+     Update-Database
+     ```
+   - This command applies any pending migrations to the database.
+
+6. **Run the Project:**
+   - Build and run the project in Visual Studio to see the changes reflected in your application.
+
+Remember to have a solid understanding of your existing database schema and the changes you're making before running migrations. Communication with your team is important, especially in a collaborative environment, to avoid conflicts and ensure everyone is aware of database changes.
+
 
 ## Database Integration
 

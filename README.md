@@ -43,15 +43,22 @@ Remember to have a solid understanding of your existing database schema and the 
 
 ## Database Integration
 
-The real estate and restaurant review databases were integrated using a unified database approach. We migrated the relevant data from both applications into a single database instance, ensuring data consistency and smooth integration of features.
-
-## Code Integration
-
-The codebases of the real estate and restaurant review applications were meticulously merged, keeping in mind naming conflicts and compatibility. We reused common components, such as authentication systems and UI elements, to create a seamless user experience.
-
+   - PropertyDetail and RealEstate: These entities have a many-to-many relationship, allowing properties to be associated with multiple real estate entities.
+   - Restaurants: Each property and restaurant shares a one-to-many relationship with the Neighbourhood table, connecting them to specific neighborhoods.
+   - Booking: The Booking table stores appointments and reservations for both properties and restaurants.
+     
 ## UI Integration
 
-The UI elements of the merged application maintain a consistent design language while seamlessly blending real estate and restaurant review functionalities. We employed a responsive design approach to ensure a consistent experience across different devices.
+   Our application's interface seamlessly combines real estate and restaurant features, ensuring a consistent look and feel across different devices.
+
+   # Home Screen and Property Search
+   -The homepage offers a list of properties stored in our database. Users can easily search for properties using a user-friendly search bar. We also showcase top agents for easy access.
+
+   # Property Details
+   -Clicking on a property provides detailed information about it, helping users understand its unique features.
+
+   # Booking Appointments
+   -Users can schedule property meetings with owners using the "Meeting" button. Our system intelligently suggests nearby restaurants in the same neighborhood, enhancing the user experience.
 
 ## Functionality Integration
 

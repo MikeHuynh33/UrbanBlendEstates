@@ -60,16 +60,27 @@ Remember to have a solid understanding of your existing database schema and the 
    ### Booking Appointments
    - Users can schedule property meetings with owners using the "Meeting" button. Our system intelligently suggests nearby restaurants in the same neighborhood, enhancing the user experience.
 
-## Functionality Integration
+## Features
 
-The merged application brings together the functionalities of both domains. Users can explore property listings and read restaurant reviews within the same platform. Special care was taken to ensure that these functionalities interact smoothly without any disruptions.
+   ### Property Search
 
-## Testing
+   Easily search for properties of interest using our user-friendly search bar. Discover a variety of property listings from our extensive database.
 
-We conducted extensive testing, including unit tests, integration tests, and user acceptance testing. This rigorous testing approach helped us identify and rectify any bugs or inconsistencies, ensuring the stability and reliability of the application.
+   ### Property Details
+
+   Click on any property to access detailed information, including descriptions, images, and key features.
+
+   ### Hassle-Free Meetings
+
+   Schedule meetings with agents effortlessly using the provided "Meeting" button. You can also choose a nearby restaurant as your meeting spot, enhancing your overall experience.
+
+   ### Neighborhood Restaurants
+
+   Before finalizing your meeting, explore restaurants located in the same neighborhood as the property. This feature enables you to make informed decisions and plan your visit more effectively.
+
 
 ## Deployment
-
+   [Check out how to deploy ASP.NET in AWS](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create_deploy_NET.quickstart.html)
 To deploy the application to your localhost environment:
 
 1. Update the database connection settings in the `config.js` file to match your localhost configuration.
@@ -80,17 +91,10 @@ To deploy the application to your localhost environment:
 
 Migrating the application to your localhost involves updating the necessary configurations to match your local environment. Ensure that connection strings, API endpoints, and database settings are correctly configured for your localhost setup.
 
-## Bug Fixing and Optimization
-
-During testing, we addressed various bugs and optimized the application's performance. We analyzed and improved critical components to ensure the application is responsive and efficient.
-
 ## Documentation
 
 We've documented the integration process, configuration changes, and database setup in the project. For more detailed information, refer to the documentation provided in the `docs` directory.
 
-## Contributing
-
-We welcome contributions to enhance and expand this project. Please review our [contribution guidelines](CONTRIBUTING.md) for more information.
 
 ## License
 
